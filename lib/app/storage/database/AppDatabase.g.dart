@@ -7,17 +7,17 @@ part of 'AppDatabase.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class UserEntry extends DataClass implements Insertable<UserEntry> {
+class TableUser extends DataClass implements Insertable<TableUser> {
   final int id;
   final String name;
   final int value;
-  UserEntry({@required this.id, @required this.name, @required this.value});
-  factory UserEntry.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  TableUser({@required this.id, @required this.name, @required this.value});
+  factory TableUser.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return UserEntry(
+    return TableUser(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
@@ -47,10 +47,10 @@ class UserEntry extends DataClass implements Insertable<UserEntry> {
     );
   }
 
-  factory UserEntry.fromJson(Map<String, dynamic> json,
+  factory TableUser.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return UserEntry(
+    return TableUser(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       value: serializer.fromJson<int>(json['value']),
@@ -66,14 +66,14 @@ class UserEntry extends DataClass implements Insertable<UserEntry> {
     };
   }
 
-  UserEntry copyWith({int id, String name, int value}) => UserEntry(
+  TableUser copyWith({int id, String name, int value}) => TableUser(
         id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
       );
   @override
   String toString() {
-    return (StringBuffer('UserEntry(')
+    return (StringBuffer('TableUser (')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')
@@ -87,13 +87,13 @@ class UserEntry extends DataClass implements Insertable<UserEntry> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is UserEntry &&
+      (other is TableUser &&
           other.id == this.id &&
           other.name == this.name &&
           other.value == this.value);
 }
 
-class UserTableCompanion extends UpdateCompanion<UserEntry> {
+class UserTableCompanion extends UpdateCompanion<TableUser> {
   final Value<int> id;
   final Value<String> name;
   final Value<int> value;
@@ -108,7 +108,7 @@ class UserTableCompanion extends UpdateCompanion<UserEntry> {
     @required int value,
   })  : name = Value(name),
         value = Value(value);
-  static Insertable<UserEntry> custom({
+  static Insertable<TableUser> custom({
     Expression<int> id,
     Expression<String> name,
     Expression<int> value,
@@ -156,7 +156,7 @@ class UserTableCompanion extends UpdateCompanion<UserEntry> {
 }
 
 class $UserTableTable extends UserTable
-    with TableInfo<$UserTableTable, UserEntry> {
+    with TableInfo<$UserTableTable, TableUser> {
   final GeneratedDatabase _db;
   final String _alias;
   $UserTableTable(this._db, [this._alias]);
@@ -202,7 +202,7 @@ class $UserTableTable extends UserTable
   @override
   final String actualTableName = 'user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<UserEntry> instance,
+  VerificationContext validateIntegrity(Insertable<TableUser> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -227,9 +227,9 @@ class $UserTableTable extends UserTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  UserEntry map(Map<String, dynamic> data, {String tablePrefix}) {
+  TableUser map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return UserEntry.fromData(data, _db, prefix: effectivePrefix);
+    return TableUser.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override
@@ -242,6 +242,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   $UserTableTable _userTable;
   $UserTableTable get userTable => _userTable ??= $UserTableTable(this);
+  UserDao _userDao;
+  UserDao get userDao => _userDao ??= UserDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
