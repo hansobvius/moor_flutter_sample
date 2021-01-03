@@ -14,6 +14,8 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
+  Future mimim(){}
+
   final bool hasData = true;
   final int initialLength = 0;
 

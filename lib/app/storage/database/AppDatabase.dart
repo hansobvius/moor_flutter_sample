@@ -17,8 +17,9 @@ LazyDatabase _openConnection() {
 
 @UseMoor(tables: [UserTable])
 class AppDatabase extends _$AppDatabase {
-
   AppDatabase() : super(_openConnection());
+
+  static final AppDatabase instance = AppDatabase();
 
   @override
   int get schemaVersion => 1;
