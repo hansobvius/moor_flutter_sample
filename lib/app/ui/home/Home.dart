@@ -39,6 +39,10 @@ class _HomeState extends State<Home>{
     homeDomain.insert(userEntity);
   }
 
+  void delete(){
+    homeDomain.delete();
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -70,14 +74,16 @@ class _HomeState extends State<Home>{
                           Expanded(
                             child: RaisedButton(
                               child: Text('insert', style: TextStyle(fontSize: 14),),
-                              onPressed: (){},
+                              onPressed: (){
+                                this.insert(User(name: "Thiago", value: 10));
+                              },
                             ),
                           ),
                           Expanded(
                             child: RaisedButton(
                               child: Text('delete', style: TextStyle(fontSize: 14),),
                               onPressed: (){
-                                this.insert(User(name: "Thiago", value: 10));
+                                this.delete();
                               },
                             ),
                           ),

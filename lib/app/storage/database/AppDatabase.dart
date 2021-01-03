@@ -9,20 +9,22 @@ import 'package:path/path.dart' as p;
 part 'AppDatabase.g.dart';
 
 LazyDatabase _openConnection() {
+  final storage = 'db.moorsample';
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'db.sqlite'));
+    final file = File(p.join(dbFolder.path, storage));
     return VmDatabase(file);
   });
 }
 
 @UseMoor(tables: [UserTable], daos: [UserDao])
 class AppDatabase extends _$AppDatabase {
-
   AppDatabase() : super(_openConnection());
+
+  static final _version = 1;
 
   static final AppDatabase instance = AppDatabase();
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => _version;
 }
