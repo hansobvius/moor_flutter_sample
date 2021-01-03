@@ -73,7 +73,7 @@ class TableUser extends DataClass implements Insertable<TableUser> {
       );
   @override
   String toString() {
-    return (StringBuffer('TableUser(')
+    return (StringBuffer('TableUser (')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')

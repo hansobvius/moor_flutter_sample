@@ -18,6 +18,7 @@ LazyDatabase _openConnection() {
 
 @UseMoor(tables: [UserTable], daos: [UserDao])
 class AppDatabase extends _$AppDatabase {
+
   AppDatabase() : super(_openConnection());
 
   static final AppDatabase instance = AppDatabase();

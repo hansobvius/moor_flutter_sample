@@ -13,4 +13,6 @@ class UserDao extends DatabaseAccessor<AppDatabase> with _$UserDaoMixin{
   UserDao(this.database) : super(database);
 
   Future insert(Insertable<TableUser> user) async => await into(userTable).insert(user);
+  Future<List<TableUser>> getAll() async => select(userTable).get();
+  Future deleteAll(Insertable<TableUser> user) => delete(userTable).delete(user);
 }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
+import 'package:moor_flutter/app/domain/HomeDomain.dart';
+import 'package:moor_flutter/app/model/User.dart';
+import 'package:moor_flutter/app/storage/dao/UserDao.dart';
+import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 
 class Home extends StatefulWidget{
 
@@ -14,19 +18,25 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
-  Future mimim(){}
+  HomeDomain homeDomain;
+
 
   final bool hasData = true;
   final int initialLength = 0;
 
   @override
   void initState(){
+    homeDomain = HomeDomain();
     super.initState();
   }
 
   @override
   void dispose(){
     super.dispose();
+  }
+
+  void insert(User userEntity){
+    homeDomain.insert(userEntity);
   }
 
   @override
@@ -66,7 +76,9 @@ class _HomeState extends State<Home>{
                           Expanded(
                             child: RaisedButton(
                               child: Text('delete', style: TextStyle(fontSize: 14),),
-                              onPressed: (){},
+                              onPressed: (){
+                                this.insert(User(name: "Thiago", value: 10));
+                              },
                             ),
                           ),
                         ]
