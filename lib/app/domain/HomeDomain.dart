@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/model/User.dart';
+import 'package:moor_flutter/app/entity/User.dart';
 import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
@@ -19,8 +19,14 @@ class HomeDomain{
     _dao.getAll().then((value) => {
       for(var obj in value){
         userList.add(User(name: obj.name, value: obj.value))
-      }
+      },
     });
+    if(userList.isNotEmpty){
+      var user = User(name: userList[0].name, value: userList[0].value);
+      print("HOME DOMAIN RESULT: $user");
+    }else{
+      print("HOME DOMAIN RESULT: IS_NULL");
+    }
     return userList;
   }
 

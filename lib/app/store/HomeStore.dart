@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/model/User.dart';
+import 'package:moor_flutter/app/entity/User.dart';
 
 part 'HomeStore.g.dart';
 
@@ -14,11 +14,21 @@ abstract class _HomeStore with Store{
   ObservableList<User> userList = ObservableList<User>();
 
   @action
-  void getAll(){}
+  void getAll(){
+    var list = domain.getAll();
+    print("LIST RESULT: $list");
+    userList.addAll(list);
+  }
 
   @action
-  void insert(){}
+  void insert(User user){
+    userList.clear();
+    domain.insert(user);
+  }
 
   @action
-  void deleteAll(){}
+  void deleteAll(){
+    userList.clear();
+    domain.delete();
+  }
 }

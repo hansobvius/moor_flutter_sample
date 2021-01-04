@@ -1,5 +1,4 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/model/User.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
 

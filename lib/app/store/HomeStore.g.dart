@@ -38,11 +38,11 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void insert() {
+  void insert(User user) {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.insert');
     try {
-      return super.insert();
+      return super.insert(user);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }

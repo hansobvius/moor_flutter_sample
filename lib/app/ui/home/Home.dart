@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/model/User.dart';
+import 'package:moor_flutter/app/entity/User.dart';
 import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
+import 'package:moor_flutter/app/store/HomeStore.dart';
 
 class Home extends StatefulWidget{
 
@@ -18,15 +19,14 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
-  HomeDomain homeDomain;
-
+  HomeStore _store;
 
   final bool hasData = true;
   final int initialLength = 0;
 
   @override
   void initState(){
-    homeDomain = HomeDomain();
+    _store = HomeStore()..getAll();
     super.initState();
   }
 
@@ -36,11 +36,11 @@ class _HomeState extends State<Home>{
   }
 
   void insert(User userEntity){
-    homeDomain.insert(userEntity);
+    _store.insert(userEntity);
   }
 
   void delete(){
-    homeDomain.delete();
+    _store.deleteAll();
   }
 
   @override
@@ -52,13 +52,13 @@ class _HomeState extends State<Home>{
       body: SafeArea(
         child: Observer(
             builder: (_){
-              return (this.hasData) ? Column(
+              return (_store.userList != null && _store.userList.isNotEmpty ) ? Column(
                   children: <Widget>[
                     Expanded(
                       child: Container(
                           child: ListView.builder(
                               padding: EdgeInsets.all(10.0),
-                              itemCount: this.initialLength,
+                              itemCount: _store.userList.length ?? 0,
                               itemBuilder: (BuildContext context, int index){
                                 return Container(
                                     child: Text(
