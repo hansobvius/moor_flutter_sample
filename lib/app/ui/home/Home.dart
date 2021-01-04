@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
@@ -36,23 +38,23 @@ class _HomeState extends State<Home>{
   }
 
   void insert(User userEntity){
-    _store.insert(userEntity);
+    _store..insert(userEntity)..getAll();
   }
 
   void delete(){
-    _store.deleteAll();
+    _store..deleteAll()..getAll();
   }
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("SQFLite App"),
+        title: Text("Moor App"),
       ),
       body: SafeArea(
         child: Observer(
             builder: (_){
-              return (_store.userList != null && _store.userList.isNotEmpty ) ? Column(
+              return (_store.userList != null) ? Column(
                   children: <Widget>[
                     Expanded(
                       child: Container(
@@ -62,7 +64,7 @@ class _HomeState extends State<Home>{
                               itemBuilder: (BuildContext context, int index){
                                 return Container(
                                     child: Text(
-                                        'NO DATA'
+                                      "NAME: ${_store.userList[index].name} VALUE: ${_store.userList[index].value}"
                                     )
                                 );
                               }
@@ -75,7 +77,7 @@ class _HomeState extends State<Home>{
                             child: RaisedButton(
                               child: Text('insert', style: TextStyle(fontSize: 14),),
                               onPressed: (){
-                                this.insert(User(name: "Thiago", value: 10));
+                                this.insert(User(name: "Thiago", value: Random().nextInt(10)));
                               },
                             ),
                           ),

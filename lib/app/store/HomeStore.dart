@@ -14,10 +14,11 @@ abstract class _HomeStore with Store{
   ObservableList<User> userList = ObservableList<User>();
 
   @action
-  void getAll(){
-    var list = domain.getAll();
-    print("LIST RESULT: $list");
-    userList.addAll(list);
+  void getAll() async {
+    var list = await domain.getAll();
+    list.forEach((element) {
+      userList.add(User(name: element.name, value: element.value));
+    });
   }
 
   @action
