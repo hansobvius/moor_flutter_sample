@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/entity/User.dart';
+import 'package:moor_flutter/app/entity/UserModel.dart';
 import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
@@ -14,9 +14,9 @@ class HomeDomain{
     _dao = UserDao(_db);
   }
 
-  Future<List<TableUser>> getAll() async => await _dao.getAll();
+  Future<List<User>> getAll() async => await _dao.getAll();
 
-  void insert(User userEntity){
+  void insert(UserModel userEntity){
     var user = UserTableCompanion(
         name: Value("${userEntity.name}"),
         value: Value(userEntity.value)
@@ -24,5 +24,5 @@ class HomeDomain{
     _dao.insert(user);
   }
 
-  void delete() => _dao.deleteAll();
+  void delete(User user) => _dao.deleteAll(user);
 }

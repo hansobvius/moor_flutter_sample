@@ -7,17 +7,17 @@ part of 'AppDatabase.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class TableUser extends DataClass implements Insertable<TableUser> {
+class User extends DataClass implements Insertable<User> {
   final int id;
   final String name;
   final int value;
-  TableUser({@required this.id, @required this.name, @required this.value});
-  factory TableUser.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  User({@required this.id, @required this.name, @required this.value});
+  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return TableUser(
+    return User(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
@@ -47,10 +47,10 @@ class TableUser extends DataClass implements Insertable<TableUser> {
     );
   }
 
-  factory TableUser.fromJson(Map<String, dynamic> json,
+  factory User.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return TableUser(
+    return User(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       value: serializer.fromJson<int>(json['value']),
@@ -66,14 +66,14 @@ class TableUser extends DataClass implements Insertable<TableUser> {
     };
   }
 
-  TableUser copyWith({int id, String name, int value}) => TableUser(
+  User copyWith({int id, String name, int value}) => User(
         id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
       );
   @override
   String toString() {
-    return (StringBuffer('TableUser (')
+    return (StringBuffer('User (')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')
@@ -87,13 +87,13 @@ class TableUser extends DataClass implements Insertable<TableUser> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is TableUser &&
+      (other is User &&
           other.id == this.id &&
           other.name == this.name &&
           other.value == this.value);
 }
 
-class UserTableCompanion extends UpdateCompanion<TableUser> {
+class UserTableCompanion extends UpdateCompanion<User> {
   final Value<int> id;
   final Value<String> name;
   final Value<int> value;
@@ -108,7 +108,7 @@ class UserTableCompanion extends UpdateCompanion<TableUser> {
     @required int value,
   })  : name = Value(name),
         value = Value(value);
-  static Insertable<TableUser> custom({
+  static Insertable<User> custom({
     Expression<int> id,
     Expression<String> name,
     Expression<int> value,
@@ -155,8 +155,7 @@ class UserTableCompanion extends UpdateCompanion<TableUser> {
   }
 }
 
-class $UserTableTable extends UserTable
-    with TableInfo<$UserTableTable, TableUser> {
+class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   final GeneratedDatabase _db;
   final String _alias;
   $UserTableTable(this._db, [this._alias]);
@@ -202,7 +201,7 @@ class $UserTableTable extends UserTable
   @override
   final String actualTableName = 'user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<TableUser> instance,
+  VerificationContext validateIntegrity(Insertable<User> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -227,9 +226,9 @@ class $UserTableTable extends UserTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  TableUser map(Map<String, dynamic> data, {String tablePrefix}) {
+  User map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return TableUser.fromData(data, _db, prefix: effectivePrefix);
+    return User.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override

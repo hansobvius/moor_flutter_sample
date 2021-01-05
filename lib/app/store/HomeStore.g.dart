@@ -12,33 +12,29 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$userListAtom = Atom(name: '_HomeStore.userList');
 
   @override
-  ObservableList<User> get userList {
+  ObservableList<UserModel> get userList {
     _$userListAtom.reportRead();
     return super.userList;
   }
 
   @override
-  set userList(ObservableList<User> value) {
+  set userList(ObservableList<UserModel> value) {
     _$userListAtom.reportWrite(value, super.userList, () {
       super.userList = value;
     });
   }
 
+  final _$getAllAsyncAction = AsyncAction('_HomeStore.getAll');
+
+  @override
+  Future<dynamic> getAll() {
+    return _$getAllAsyncAction.run(() => super.getAll());
+  }
+
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
-  void getAll() {
-    final _$actionInfo =
-        _$_HomeStoreActionController.startAction(name: '_HomeStore.getAll');
-    try {
-      return super.getAll();
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void insert(User user) {
+  void insert(UserModel user) {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.insert');
     try {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/entity/User.dart';
+import 'package:moor_flutter/app/entity/UserModel.dart';
 import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/store/HomeStore.dart';
@@ -23,12 +23,10 @@ class _HomeState extends State<Home>{
 
   HomeStore _store;
 
-  final bool hasData = true;
-  final int initialLength = 0;
-
   @override
   void initState(){
-    _store = HomeStore()..getAll();
+    _store = HomeStore()
+      ..getAll();
     super.initState();
   }
 
@@ -37,12 +35,16 @@ class _HomeState extends State<Home>{
     super.dispose();
   }
 
-  void insert(User userEntity){
-    _store..insert(userEntity)..getAll();
+  void insert(UserModel userEntity){
+    _store
+      ..insert(userEntity)
+      ..getAll();
   }
 
   void delete(){
-    _store..deleteAll()..getAll();
+    _store
+      ..deleteAll()
+      ..getAll();
   }
 
   @override
@@ -77,7 +79,7 @@ class _HomeState extends State<Home>{
                             child: RaisedButton(
                               child: Text('insert', style: TextStyle(fontSize: 14),),
                               onPressed: (){
-                                this.insert(User(name: "Thiago", value: Random().nextInt(10)));
+                                this.insert(UserModel(name: "Thiago", value: Random().nextInt(10)));
                               },
                             ),
                           ),
