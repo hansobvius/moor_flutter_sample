@@ -73,7 +73,7 @@ class User extends DataClass implements Insertable<User> {
       );
   @override
   String toString() {
-    return (StringBuffer('User (')
+    return (StringBuffer('User(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')
@@ -242,7 +242,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   $UserTableTable _userTable;
   $UserTableTable get userTable => _userTable ??= $UserTableTable(this);
   UserDao _userDao;
-  UserDao get userDao => _userDao ??= UserDao(this as AppDatabase);
+  UserDao get userDao => _userDao ??= UserDao();
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

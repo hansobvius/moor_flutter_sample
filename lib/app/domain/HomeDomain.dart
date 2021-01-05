@@ -7,11 +7,9 @@ import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
 class HomeDomain{
 
   UserDao _dao;
-  AppDatabase _db;
 
   HomeDomain(){
-    _db = AppDatabase.instance;
-    _dao = UserDao(_db);
+    _dao = UserDao();
   }
 
   Future<List<User>> getAll() async => await _dao.getAll();

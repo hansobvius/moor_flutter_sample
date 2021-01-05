@@ -1,21 +1,42 @@
 import 'package:moor/moor.dart';
+import 'package:moor_flutter/app/storage/BaseDatabase.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
+import '../BaseDao.dart';
 
 part 'UserDao.g.dart';
 
 @UseDao(tables: [UserTable])
-class UserDao extends DatabaseAccessor<AppDatabase> with _$UserDaoMixin{
+class UserDao
+    extends DatabaseAccessor<AppDatabase>
+    with _$UserDaoMixin, BaseDatabase
+    implements BaseDao<User> {
 
-  final AppDatabase database;
+  static final AppDatabase _database = AppDatabase.instance;
 
-  UserDao(this.database) : super(database);
+  UserDao() : super(_database);
 
+  @override
   Future insert(Insertable<User> user) async => await into(userTable).insert(user);
 
+  @override
   Future<List<User>> getAll() async => await select(userTable).get();
 
+  @override
   Future deleteAll(User user) async => await delete(userTable).delete(user);
 
+  @override
   Stream<List<User>> watchAll() => select(userTable).watch();
+
+  @override
+  tableMigration(TableInfo<Table, DataClass> table, GeneratedColumn column) => MigrationStrategy(
+      onCreate: (Migrator m) {
+        return m.createAll();
+      },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from == 1) {
+          await m.addColumn(table, column);
+        }
+      }
+  );
 }
