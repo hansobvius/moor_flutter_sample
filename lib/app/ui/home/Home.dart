@@ -42,9 +42,8 @@ class _HomeState extends State<Home>{
   }
 
   void delete(){
-    _store
-      ..deleteAll()
-      ..getAll();
+    _store..deleteAll();
+
   }
 
   @override

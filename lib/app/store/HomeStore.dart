@@ -11,14 +11,9 @@ class HomeStore = _HomeStore with _$HomeStore;
 abstract class _HomeStore with Store{
 
   HomeDomain domain;
-  User user;
-  UserDao dao;
-  AppDatabase db = AppDatabase.instance;
 
   _HomeStore(){
     this.domain = HomeDomain();
-    this.user = User(id: null, name: null, value: null);
-    this.dao = UserDao(db);
   }
 
   @observable
@@ -41,6 +36,10 @@ abstract class _HomeStore with Store{
   @action
   void deleteAll(){
     userList.clear();
-    domain.delete(user);
+    domain.getAll().then((value) => {
+      value.forEach((element) {
+        domain.delete(element);
+      })
+    });
   }
 }

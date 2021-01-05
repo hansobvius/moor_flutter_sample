@@ -25,4 +25,6 @@ class HomeDomain{
   }
 
   void delete(User user) => _dao.deleteAll(user);
+
+  Stream<List<User>> watchAll() => _dao.watchAll();
 }

@@ -11,14 +11,11 @@ class UserDao extends DatabaseAccessor<AppDatabase> with _$UserDaoMixin{
 
   UserDao(this.database) : super(database);
 
-  Future insert(Insertable<User> user) async{
-    await into(userTable).insert(user);
-  }
-  Future<List<User>> getAll() async{
-    var result = await select(userTable).get();
-    return result;
-  }
-  Future deleteAll(User user) async{
-    await delete(userTable).delete(user);
-  }
+  Future insert(Insertable<User> user) async => await into(userTable).insert(user);
+
+  Future<List<User>> getAll() async => await select(userTable).get();
+
+  Future deleteAll(User user) async => await delete(userTable).delete(user);
+
+  Stream<List<User>> watchAll() => select(userTable).watch();
 }
