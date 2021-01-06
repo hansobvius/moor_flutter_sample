@@ -9,7 +9,7 @@ part 'UserDao.g.dart';
 @UseDao(tables: [UserTable])
 class UserDao
     extends DatabaseAccessor<AppDatabase>
-    with _$UserDaoMixin, BaseDatabase
+    with _$UserDaoMixin
     implements BaseDao<User> {
 
   static final AppDatabase _database = AppDatabase.instance;
@@ -27,16 +27,4 @@ class UserDao
 
   @override
   Stream<List<User>> watchAll() => select(userTable).watch();
-
-  @override
-  tableMigration(TableInfo<Table, DataClass> table, GeneratedColumn column) => MigrationStrategy(
-      onCreate: (Migrator m) {
-        return m.createAll();
-      },
-      onUpgrade: (Migrator m, int from, int to) async {
-        if (from == 1) {
-          await m.addColumn(table, column);
-        }
-      }
-  );
 }

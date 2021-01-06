@@ -10,8 +10,13 @@ part of 'AppDatabase.dart';
 class User extends DataClass implements Insertable<User> {
   final int id;
   final String name;
+  final String genre;
   final int value;
-  User({@required this.id, @required this.name, @required this.value});
+  User(
+      {@required this.id,
+      @required this.name,
+      @required this.genre,
+      @required this.value});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -20,6 +25,8 @@ class User extends DataClass implements Insertable<User> {
     return User(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
+      genre:
+          stringType.mapFromDatabaseResponse(data['${effectivePrefix}genre']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
     );
   }
@@ -32,6 +39,9 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || name != null) {
       map['name'] = Variable<String>(name);
     }
+    if (!nullToAbsent || genre != null) {
+      map['genre'] = Variable<String>(genre);
+    }
     if (!nullToAbsent || value != null) {
       map['value'] = Variable<int>(value);
     }
@@ -42,6 +52,8 @@ class User extends DataClass implements Insertable<User> {
     return UserTableCompanion(
       id: id == null && nullToAbsent ? const Value.absent() : Value(id),
       name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      genre:
+          genre == null && nullToAbsent ? const Value.absent() : Value(genre),
       value:
           value == null && nullToAbsent ? const Value.absent() : Value(value),
     );
@@ -53,6 +65,7 @@ class User extends DataClass implements Insertable<User> {
     return User(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
+      genre: serializer.fromJson<String>(json['genre']),
       value: serializer.fromJson<int>(json['value']),
     );
   }
@@ -62,13 +75,15 @@ class User extends DataClass implements Insertable<User> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
+      'genre': serializer.toJson<String>(genre),
       'value': serializer.toJson<int>(value),
     };
   }
 
-  User copyWith({int id, String name, int value}) => User(
+  User copyWith({int id, String name, String genre, int value}) => User(
         id: id ?? this.id,
         name: name ?? this.name,
+        genre: genre ?? this.genre,
         value: value ?? this.value,
       );
   @override
@@ -76,55 +91,67 @@ class User extends DataClass implements Insertable<User> {
     return (StringBuffer('User(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      $mrjf($mrjc(id.hashCode, $mrjc(name.hashCode, value.hashCode)));
+  int get hashCode => $mrjf($mrjc(id.hashCode,
+      $mrjc(name.hashCode, $mrjc(genre.hashCode, value.hashCode))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
       (other is User &&
           other.id == this.id &&
           other.name == this.name &&
+          other.genre == this.genre &&
           other.value == this.value);
 }
 
 class UserTableCompanion extends UpdateCompanion<User> {
   final Value<int> id;
   final Value<String> name;
+  final Value<String> genre;
   final Value<int> value;
   const UserTableCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.genre = const Value.absent(),
     this.value = const Value.absent(),
   });
   UserTableCompanion.insert({
     this.id = const Value.absent(),
     @required String name,
+    @required String genre,
     @required int value,
   })  : name = Value(name),
+        genre = Value(genre),
         value = Value(value);
   static Insertable<User> custom({
     Expression<int> id,
     Expression<String> name,
+    Expression<String> genre,
     Expression<int> value,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
+      if (genre != null) 'genre': genre,
       if (value != null) 'value': value,
     });
   }
 
   UserTableCompanion copyWith(
-      {Value<int> id, Value<String> name, Value<int> value}) {
+      {Value<int> id,
+      Value<String> name,
+      Value<String> genre,
+      Value<int> value}) {
     return UserTableCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
+      genre: genre ?? this.genre,
       value: value ?? this.value,
     );
   }
@@ -138,6 +165,9 @@ class UserTableCompanion extends UpdateCompanion<User> {
     if (name.present) {
       map['name'] = Variable<String>(name.value);
     }
+    if (genre.present) {
+      map['genre'] = Variable<String>(genre.value);
+    }
     if (value.present) {
       map['value'] = Variable<int>(value.value);
     }
@@ -149,6 +179,7 @@ class UserTableCompanion extends UpdateCompanion<User> {
     return (StringBuffer('UserTableCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
         .toString();
@@ -180,6 +211,18 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     );
   }
 
+  final VerificationMeta _genreMeta = const VerificationMeta('genre');
+  GeneratedTextColumn _genre;
+  @override
+  GeneratedTextColumn get genre => _genre ??= _constructGenre();
+  GeneratedTextColumn _constructGenre() {
+    return GeneratedTextColumn(
+      'genre',
+      $tableName,
+      false,
+    );
+  }
+
   final VerificationMeta _valueMeta = const VerificationMeta('value');
   GeneratedIntColumn _value;
   @override
@@ -193,7 +236,7 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   }
 
   @override
-  List<GeneratedColumn> get $columns => [id, name, value];
+  List<GeneratedColumn> get $columns => [id, name, genre, value];
   @override
   $UserTableTable get asDslTable => this;
   @override
@@ -213,6 +256,12 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
           _nameMeta, name.isAcceptableOrUnknown(data['name'], _nameMeta));
     } else if (isInserting) {
       context.missing(_nameMeta);
+    }
+    if (data.containsKey('genre')) {
+      context.handle(
+          _genreMeta, genre.isAcceptableOrUnknown(data['genre'], _genreMeta));
+    } else if (isInserting) {
+      context.missing(_genreMeta);
     }
     if (data.containsKey('value')) {
       context.handle(
