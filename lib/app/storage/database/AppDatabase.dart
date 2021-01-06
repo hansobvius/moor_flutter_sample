@@ -26,10 +26,8 @@ LazyDatabase _openConnection() {
 class AppDatabase extends _$AppDatabase with BaseDatabase{
   AppDatabase() : super(_openConnection());
 
-  static final _version = 2;
-
-  TableInfo table;
-  GeneratedColumn column;
+  @override
+  int _version = 2;
 
   static final AppDatabase instance = AppDatabase();
 

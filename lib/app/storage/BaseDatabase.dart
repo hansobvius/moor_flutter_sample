@@ -1,7 +1,7 @@
 import 'package:moor/moor.dart';
 
-class BaseDatabase{
-  tableMigration(TableInfo table, GeneratedColumn column){
+abstract class BaseDatabase{
 
-  }
+  int _version;
+
 }

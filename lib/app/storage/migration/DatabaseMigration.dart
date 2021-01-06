@@ -17,9 +17,6 @@ class DatabaseMigration implements IMigration{
       _db = db;
 
   @override
-  int version = 2;
-
-  @override
   AppDatabase database() => _db;
 
   @override
@@ -28,11 +25,8 @@ class DatabaseMigration implements IMigration{
         return m.createAll();
       },
       onUpgrade: (Migrator m, int from, int to) async {
-        if (from > 1) {
-          m.alterTable(
-            TableMigration($UserTableTable(_db), columnTransformer: {})
-          );
-          m.addColumn($UserTableTable(_db), $UserTableTable(_db).genre as GeneratedColumn);
+        if (to > from) {
+          m.addColumn($UserTableTable(_db), $UserTableTable(_db).genre);
         }
       }
   );
