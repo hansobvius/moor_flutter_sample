@@ -291,7 +291,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   $UserTableTable _userTable;
   $UserTableTable get userTable => _userTable ??= $UserTableTable(this);
   UserDao _userDao;
-  UserDao get userDao => _userDao ??= UserDao();
+  UserDao get userDao => _userDao ??= UserDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

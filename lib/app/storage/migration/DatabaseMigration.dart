@@ -20,14 +20,22 @@ class DatabaseMigration<T extends DataClass> implements IMigration{
   AppDatabase database() => _db;
 
   @override
-  MigrationStrategy migrationOp(int version) => MigrationStrategy(
-      // onCreate: (Migrator m) {
-      //   return m.createAll();
-      // },
-      // onUpgrade: (Migrator m, int from, int to) async {
-      //   if (from <= version) {
-      //     m.addColumn(userTable, userTable.genre);
-      //   }
-      // }
+  MigrationStrategy migrationOp(int version) =>  MigrationStrategy(
+      onCreate: (Migrator m) {
+        return m.createAll();
+      },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from <= version) {
+          print("SCHEMA VERSION: ${version} FROM: $from TO $to");
+          await m.alterTable(
+              TableMigration(
+                _db.userTable,
+                columnTransformer: {
+                  _db.userTable.genre: _db.userTable.genre.cast<String>()
+                },
+              )
+          );
+        }
+      }
   );
 }

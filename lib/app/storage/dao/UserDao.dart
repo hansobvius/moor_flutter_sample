@@ -12,9 +12,7 @@ class UserDao
     with _$UserDaoMixin, BaseDatabase
     implements BaseDao<User> {
 
-  static final AppDatabase _database = AppDatabase.instance;
-
-  UserDao() : super(_database);
+  UserDao(AppDatabase database) : super(database);
 
   @override
   Future insert(Insertable<User> user) async => await into(userTable).insert(user);

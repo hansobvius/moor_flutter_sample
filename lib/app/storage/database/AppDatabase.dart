@@ -29,25 +29,8 @@ class AppDatabase extends _$AppDatabase{
   static final AppDatabase instance = AppDatabase();
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
-  MigrationStrategy get migration => MigrationStrategy(
-      onCreate: (Migrator m) {
-        return m.createAll();
-      },
-      onUpgrade: (Migrator m, int from, int to) async {
-        if (from <= schemaVersion) {
-          print("SCHEMA VERSION: $schemaVersion FROM: $from TO $to");
-          await m.alterTable(
-            TableMigration(
-              userTable,
-              columnTransformer: {
-                userTable.genre: userTable.genre.cast<String>()
-              }
-            )
-          );
-        }
-      }
-  );
+  MigrationStrategy get migration => DatabaseMigration(this).migrationOp(schemaVersion);
 }
