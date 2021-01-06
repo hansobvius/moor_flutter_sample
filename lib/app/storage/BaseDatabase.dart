@@ -1,7 +1,7 @@
 import 'package:moor/moor.dart';
 
-abstract class BaseDatabase{
+class BaseDatabase{
 
-  int _version;
+  int _version = 2;
 
 }

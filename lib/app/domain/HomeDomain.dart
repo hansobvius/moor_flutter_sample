@@ -17,6 +17,7 @@ class HomeDomain{
   void insert(UserModel userEntity){
     var user = UserTableCompanion(
         name: Value("${userEntity.name}"),
+        genre: Value("${userEntity.genre}"),
         value: Value(userEntity.value)
     );
     _dao.insert(user);

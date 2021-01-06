@@ -9,7 +9,7 @@ part 'UserDao.g.dart';
 @UseDao(tables: [UserTable])
 class UserDao
     extends DatabaseAccessor<AppDatabase>
-    with _$UserDaoMixin
+    with _$UserDaoMixin, BaseDatabase
     implements BaseDao<User> {
 
   static final AppDatabase _database = AppDatabase.instance;

@@ -23,17 +23,31 @@ LazyDatabase _openConnection() {
 }
 
 @UseMoor(tables: [UserTable], daos: [UserDao])
-class AppDatabase extends _$AppDatabase with BaseDatabase{
+class AppDatabase extends _$AppDatabase{
   AppDatabase() : super(_openConnection());
-
-  @override
-  int _version = 2;
 
   static final AppDatabase instance = AppDatabase();
 
   @override
-  int get schemaVersion => _version;
+  int get schemaVersion => 3;
 
   @override
-  MigrationStrategy get migration => DatabaseMigration(this).migrationOp(_version);
+  MigrationStrategy get migration => MigrationStrategy(
+      onCreate: (Migrator m) {
+        return m.createAll();
+      },
+      onUpgrade: (Migrator m, int from, int to) async {
+        if (from <= schemaVersion) {
+          print("SCHEMA VERSION: $schemaVersion FROM: $from TO $to");
+          await m.alterTable(
+            TableMigration(
+              userTable,
+              columnTransformer: {
+                userTable.genre: userTable.genre.cast<String>()
+              }
+            )
+          );
+        }
+      }
+  );
 }

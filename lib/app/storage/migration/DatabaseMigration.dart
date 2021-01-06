@@ -7,7 +7,7 @@ import 'package:moor_flutter/app/storage/migration/IMigration.dart';
 import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
 
 /// Class that provides migration operations
-class DatabaseMigration implements IMigration{
+class DatabaseMigration<T extends DataClass> implements IMigration{
 
   final AppDatabase _db;
 
@@ -21,13 +21,13 @@ class DatabaseMigration implements IMigration{
 
   @override
   MigrationStrategy migrationOp(int version) => MigrationStrategy(
-      onCreate: (Migrator m) {
-        return m.createAll();
-      },
-      onUpgrade: (Migrator m, int from, int to) async {
-        if (to > from) {
-          m.addColumn($UserTableTable(_db), $UserTableTable(_db).genre);
-        }
-      }
+      // onCreate: (Migrator m) {
+      //   return m.createAll();
+      // },
+      // onUpgrade: (Migrator m, int from, int to) async {
+      //   if (from <= version) {
+      //     m.addColumn(userTable, userTable.genre);
+      //   }
+      // }
   );
 }
