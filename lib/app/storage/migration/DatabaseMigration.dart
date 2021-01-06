@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:moor/moor.dart';
 import 'package:moor/src/runtime/query_builder/query_builder.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/migration/IMigration.dart';
-import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
 
 /// Class that provides migration operations
 class DatabaseMigration<T extends DataClass> implements IMigration{
@@ -27,14 +25,7 @@ class DatabaseMigration<T extends DataClass> implements IMigration{
       onUpgrade: (Migrator m, int from, int to) async {
         if (from <= version) {
           print("SCHEMA VERSION: ${version} FROM: $from TO $to");
-          await m.alterTable(
-              TableMigration(
-                _db.userTable,
-                columnTransformer: {
-                  _db.userTable.genre: _db.userTable.genre.cast<String>()
-                },
-              )
-          );
+          await m.addColumn(_db.userTable, _db.userTable.genre);
         }
       }
   );

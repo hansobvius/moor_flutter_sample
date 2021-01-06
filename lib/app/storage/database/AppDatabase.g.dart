@@ -12,11 +12,7 @@ class User extends DataClass implements Insertable<User> {
   final String name;
   final String genre;
   final int value;
-  User(
-      {@required this.id,
-      @required this.name,
-      @required this.genre,
-      @required this.value});
+  User({@required this.id, this.name, this.genre, this.value});
   factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -123,12 +119,10 @@ class UserTableCompanion extends UpdateCompanion<User> {
   });
   UserTableCompanion.insert({
     this.id = const Value.absent(),
-    @required String name,
-    @required String genre,
-    @required int value,
-  })  : name = Value(name),
-        genre = Value(genre),
-        value = Value(value);
+    this.name = const Value.absent(),
+    this.genre = const Value.absent(),
+    this.value = const Value.absent(),
+  });
   static Insertable<User> custom({
     Expression<int> id,
     Expression<String> name,
@@ -207,7 +201,7 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     return GeneratedTextColumn(
       'name',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -216,11 +210,8 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   GeneratedTextColumn get genre => _genre ??= _constructGenre();
   GeneratedTextColumn _constructGenre() {
-    return GeneratedTextColumn(
-      'genre',
-      $tableName,
-      false,
-    );
+    return GeneratedTextColumn('genre', $tableName, true,
+        defaultValue: const Constant(''));
   }
 
   final VerificationMeta _valueMeta = const VerificationMeta('value');
@@ -231,7 +222,7 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     return GeneratedIntColumn(
       'value',
       $tableName,
-      false,
+      true,
     );
   }
 
@@ -254,20 +245,14 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name'], _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
     }
     if (data.containsKey('genre')) {
       context.handle(
           _genreMeta, genre.isAcceptableOrUnknown(data['genre'], _genreMeta));
-    } else if (isInserting) {
-      context.missing(_genreMeta);
     }
     if (data.containsKey('value')) {
       context.handle(
           _valueMeta, value.isAcceptableOrUnknown(data['value'], _valueMeta));
-    } else if (isInserting) {
-      context.missing(_valueMeta);
     }
     return context;
   }
