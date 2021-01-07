@@ -1,5 +1,4 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import '../database_test/DatabaseTest.dart';
 import '../table_test/TableTest.dart';
 

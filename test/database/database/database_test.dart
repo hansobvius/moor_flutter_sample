@@ -1,9 +1,6 @@
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:test/test.dart';
-
 import 'dao_test/UserDao.dart';
 import 'database_test/DatabaseTest.dart';
 
@@ -24,28 +21,25 @@ void dbTest(){
     });
 
     test('users can be created', () async {
-      final id = await _db.createUser('some user', 10);
-      final user = await _db.watchUserWithId(id).first;
-
-      expect(user.name, 'some user');
-      expect(user.value, 10);
-    });
-
-    test('stream emits a new user when the name updates', () async {
-      final id = await _db.createUser('first name', 10);
-
-      final expectation = expectLater(
-        _db.watchUserWithId(id).map((user) => user.name),
-        emitsInOrder(['first name', 'changed name']),
+      var user = TableTestCompanion(
+          name: Value("name"),
+          value: Value(10)
       );
-
-      await _db.updateName(id, 'changed name', 10);
-      await expectation;
+      _dao.insert(user);
     });
 
-    tearDown((){
-      _db.close();
+    test('check data insertion', ()  async {
+      Future<List<table>>  result = _dao.getAll();
+      result.then((value) => {
+        expect(value[0].name, 'name'),
+        expect(value[0].value, 10)
+      });
     });
+
+    // FIXME - db are closing before unit test been completed
+    // tearDown((){
+    //   _db.close();
+    // });
   });
 }
 
