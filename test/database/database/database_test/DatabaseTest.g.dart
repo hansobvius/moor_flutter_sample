@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'AppDatabase.dart';
+part of 'DatabaseTest.dart';
 
 // **************************************************************************
 // MoorGenerator
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class User extends DataClass implements Insertable<User> {
+class table extends DataClass implements Insertable<table> {
   final int id;
   final String name;
   final int value;
-  User({@required this.id, @required this.name, @required this.value});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  table({@required this.id, @required this.name, @required this.value});
+  factory table.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return User(
+    return table(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
@@ -38,8 +38,8 @@ class User extends DataClass implements Insertable<User> {
     return map;
   }
 
-  UserTableCompanion toCompanion(bool nullToAbsent) {
-    return UserTableCompanion(
+  TableTestCompanion toCompanion(bool nullToAbsent) {
+    return TableTestCompanion(
       id: id == null && nullToAbsent ? const Value.absent() : Value(id),
       name: name == null && nullToAbsent ? const Value.absent() : Value(name),
       value:
@@ -47,10 +47,10 @@ class User extends DataClass implements Insertable<User> {
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json,
+  factory table.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return User(
+    return table(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       value: serializer.fromJson<int>(json['value']),
@@ -66,14 +66,14 @@ class User extends DataClass implements Insertable<User> {
     };
   }
 
-  User copyWith({int id, String name, int value}) => User(
+  table copyWith({int id, String name, int value}) => table(
         id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
       );
   @override
   String toString() {
-    return (StringBuffer('User(')
+    return (StringBuffer('table(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')
@@ -87,28 +87,28 @@ class User extends DataClass implements Insertable<User> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is User &&
+      (other is table &&
           other.id == this.id &&
           other.name == this.name &&
           other.value == this.value);
 }
 
-class UserTableCompanion extends UpdateCompanion<User> {
+class TableTestCompanion extends UpdateCompanion<table> {
   final Value<int> id;
   final Value<String> name;
   final Value<int> value;
-  const UserTableCompanion({
+  const TableTestCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
     this.value = const Value.absent(),
   });
-  UserTableCompanion.insert({
+  TableTestCompanion.insert({
     this.id = const Value.absent(),
     @required String name,
     @required int value,
   })  : name = Value(name),
         value = Value(value);
-  static Insertable<User> custom({
+  static Insertable<table> custom({
     Expression<int> id,
     Expression<String> name,
     Expression<int> value,
@@ -120,9 +120,9 @@ class UserTableCompanion extends UpdateCompanion<User> {
     });
   }
 
-  UserTableCompanion copyWith(
+  TableTestCompanion copyWith(
       {Value<int> id, Value<String> name, Value<int> value}) {
-    return UserTableCompanion(
+    return TableTestCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
       value: value ?? this.value,
@@ -146,7 +146,7 @@ class UserTableCompanion extends UpdateCompanion<User> {
 
   @override
   String toString() {
-    return (StringBuffer('UserTableCompanion(')
+    return (StringBuffer('TableTestCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('value: $value')
@@ -155,10 +155,10 @@ class UserTableCompanion extends UpdateCompanion<User> {
   }
 }
 
-class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
+class $TableTestTable extends TableTest with TableInfo<$TableTestTable, table> {
   final GeneratedDatabase _db;
   final String _alias;
-  $UserTableTable(this._db, [this._alias]);
+  $TableTestTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   GeneratedIntColumn _id;
   @override
@@ -195,13 +195,13 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   List<GeneratedColumn> get $columns => [id, name, value];
   @override
-  $UserTableTable get asDslTable => this;
+  $TableTestTable get asDslTable => this;
   @override
-  String get $tableName => _alias ?? 'user_table';
+  String get $tableName => _alias ?? 'table_test';
   @override
-  final String actualTableName = 'user_table';
+  final String actualTableName = 'table_test';
   @override
-  VerificationContext validateIntegrity(Insertable<User> instance,
+  VerificationContext validateIntegrity(Insertable<table> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -226,25 +226,23 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  User map(Map<String, dynamic> data, {String tablePrefix}) {
+  table map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return User.fromData(data, _db, prefix: effectivePrefix);
+    return table.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override
-  $UserTableTable createAlias(String alias) {
-    return $UserTableTable(_db, alias);
+  $TableTestTable createAlias(String alias) {
+    return $TableTestTable(_db, alias);
   }
 }
 
-abstract class _$AppDatabase extends GeneratedDatabase {
-  _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
-  $UserTableTable _userTable;
-  $UserTableTable get userTable => _userTable ??= $UserTableTable(this);
-  UserDao _userDao;
-  UserDao get userDao => _userDao ??= UserDao(this as AppDatabase);
+abstract class _$DatabaseTest extends GeneratedDatabase {
+  _$DatabaseTest(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  $TableTestTable _tableTest;
+  $TableTestTable get tableTest => _tableTest ??= $TableTestTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [userTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [tableTest];
 }
