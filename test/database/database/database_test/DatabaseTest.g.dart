@@ -241,6 +241,8 @@ abstract class _$DatabaseTest extends GeneratedDatabase {
   _$DatabaseTest(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   $TableTestTable _tableTest;
   $TableTestTable get tableTest => _tableTest ??= $TableTestTable(this);
+  UserDao _userDao;
+  UserDao get userDao => _userDao ??= UserDao(this as DatabaseTest);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

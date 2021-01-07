@@ -1,9 +1,10 @@
 import 'package:moor/moor.dart';
+import '../dao_test/UserDao.dart';
 import '../table_test/TableTest.dart';
 
 part 'DatabaseTest.g.dart';
 
-@UseMoor(tables: [TableTest])
+@UseMoor(tables: [TableTest], daos: [UserDao])
 class DatabaseTest extends _$DatabaseTest{
 
   DatabaseTest(QueryExecutor e) : super(e);

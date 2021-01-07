@@ -1,10 +1,10 @@
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 import 'package:test/test.dart';
 
+import 'dao_test/UserDao.dart';
 import 'database_test/DatabaseTest.dart';
 
 void main(){
@@ -20,6 +20,7 @@ void dbTest(){
 
     setUp(() {
       _db = DatabaseTest(VmDatabase.memory());
+      _dao = UserDao(_db);
     });
 
     test('users can be created', () async {
