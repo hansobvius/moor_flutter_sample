@@ -43,7 +43,6 @@ class _HomeState extends State<Home>{
 
   void delete(){
     _store..deleteAll();
-
   }
 
   @override
@@ -78,7 +77,7 @@ class _HomeState extends State<Home>{
                             child: RaisedButton(
                               child: Text('insert', style: TextStyle(fontSize: 14),),
                               onPressed: (){
-                                this.insert(UserModel(name: "Thiago", value: Random().nextInt(10)));
+                                this.insert(UserModel(name: "Thiago", genre: 'genre', value: Random().nextInt(10)));
                               },
                             ),
                           ),

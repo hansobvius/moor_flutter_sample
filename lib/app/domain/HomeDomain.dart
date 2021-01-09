@@ -7,11 +7,10 @@ import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
 class HomeDomain{
 
   UserDao _dao;
-  AppDatabase _db;
+  static final AppDatabase _database = AppDatabase.instance;
 
   HomeDomain(){
-    _db = AppDatabase.instance;
-    _dao = UserDao(_db);
+    _dao = UserDao(_database);
   }
 
   Future<List<User>> getAll() async => await _dao.getAll();
@@ -19,6 +18,7 @@ class HomeDomain{
   void insert(UserModel userEntity){
     var user = UserTableCompanion(
         name: Value("${userEntity.name}"),
+        genre: Value("${userEntity.genre}"),
         value: Value(userEntity.value)
     );
     _dao.insert(user);
