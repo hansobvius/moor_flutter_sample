@@ -9,8 +9,6 @@ class DatabaseMigration<T extends DataClass> implements IMigration{
 
   final AppDatabase _db;
 
-  HomeDomain homeDomain = HomeDomain();
-
   DatabaseMigration(AppDatabase db) :
       _db = db;
 

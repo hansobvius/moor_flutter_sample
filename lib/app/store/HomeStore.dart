@@ -6,22 +6,22 @@ import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 
 part 'HomeStore.g.dart';
 
-class HomeStore = _HomeStore with _$HomeStore;
+class HomeStore extends _HomeStore with _$HomeStore{
+  HomeStore(HomeDomain domain) : super(domain);
+}
 
 abstract class _HomeStore with Store{
 
-  HomeDomain domain;
+  HomeDomain _domain;
 
-  _HomeStore(){
-    this.domain = HomeDomain();
-  }
+  _HomeStore(HomeDomain homeDomain) : _domain = homeDomain;
 
   @observable
   ObservableList<UserModel> userList = ObservableList<UserModel>();
 
   @action
   Future getAll() async {
-    var list = await domain.getAll();
+    var list = await _domain.getAll();
     list.forEach((element) {
       userList.add(UserModel(name: element.name, value: element.value));
     });
@@ -30,15 +30,15 @@ abstract class _HomeStore with Store{
   @action
   void insert(UserModel user){
     userList.clear();
-    domain.insert(user);
+    _domain.insert(user);
   }
 
   @action
   void deleteAll(){
     userList.clear();
-    domain.getAll().then((value) => {
+    _domain.getAll().then((value) => {
       value.forEach((element) {
-        domain.delete(element);
+        _domain.delete(element);
       })
     });
   }

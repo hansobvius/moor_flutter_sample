@@ -25,7 +25,7 @@ class _HomeState extends State<Home>{
 
   @override
   void initState(){
-    _store = HomeStore()
+    _store = widget.serviceLocator.homeStore
       ..getAll();
     super.initState();
   }
