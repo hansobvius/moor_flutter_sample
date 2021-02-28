@@ -1,7 +1,7 @@
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
 import 'package:moor_flutter/app/storage/dao/UserDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
-import 'package:moor_flutter/app/store/HomeStore.dart';
+import 'package:moor_flutter/app/store/home/HomeStore.dart';
 
 class ServiceLocator{
 

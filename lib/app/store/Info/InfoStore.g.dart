@@ -1,0 +1,46 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'InfoStore.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+
+mixin _$InfoStore on _InfoStore, Store {
+  final _$infoModelAtom = Atom(name: '_InfoStore.infoModel');
+
+  @override
+  ObservableList<InfoModel> get infoModel {
+    _$infoModelAtom.reportRead();
+    return super.infoModel;
+  }
+
+  @override
+  set infoModel(ObservableList<InfoModel> value) {
+    _$infoModelAtom.reportWrite(value, super.infoModel, () {
+      super.infoModel = value;
+    });
+  }
+
+  final _$_InfoStoreActionController = ActionController(name: '_InfoStore');
+
+  @override
+  void getInfoModelList() {
+    final _$actionInfo = _$_InfoStoreActionController.startAction(
+        name: '_InfoStore.getInfoModelList');
+    try {
+      return super.getInfoModelList();
+    } finally {
+      _$_InfoStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String toString() {
+    return '''
+infoModel: ${infoModel}
+    ''';
+  }
+}

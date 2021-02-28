@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
 import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/store/HomeStore.dart';
+import 'package:moor_flutter/app/store/home/HomeStore.dart';
 
 class Home extends StatefulWidget{
 
@@ -46,54 +46,54 @@ class _HomeState extends State<Home>{
       ),
       body: SafeArea(
         child: Observer(
-            builder: (_){
-              return (_store.userList != null) ? Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      child: ListView.builder(
-                        padding: EdgeInsets.all(10.0),
-                        itemCount: _store.userList.length ?? 0,
-                        itemBuilder: (BuildContext context, int index){
-                          return Container(
-                            child: Text(
-                              "NAME: ${_store.userList[index].name} VALUE: ${_store.userList[index].value}"
-                            )
-                          );
-                        }
-                      )
-                    ),
+          builder: (_){
+            return (_store.userList != null) ? Column(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(10.0),
+                      itemCount: _store.userList.length ?? 0,
+                      itemBuilder: (BuildContext context, int index){
+                        return Container(
+                          child: Text(
+                            "NAME: ${_store.userList[index].name} VALUE: ${_store.userList[index].value}"
+                          )
+                        );
+                      }
+                    )
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RaisedButton(
-                            child: Text('insert', style: TextStyle(fontSize: 14),),
-                            onPressed: (){
-                              this.insert(UserModel(name: "Thiago", genre: 'genre', value: Random().nextInt(10)));
-                            },
-                          ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          child: Text('insert', style: TextStyle(fontSize: 14),),
+                          onPressed: (){
+                            this.insert(UserModel(name: "Thiago", genre: 'genre', value: Random().nextInt(10)));
+                          },
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RaisedButton(
-                            child: Text('delete', style: TextStyle(fontSize: 14),),
-                            onPressed: (){
-                              this.delete();
-                            },
-                          ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          child: Text('delete', style: TextStyle(fontSize: 14),),
+                          onPressed: (){
+                            this.delete();
+                          },
                         ),
                       ),
-                    ]
-                  )
-                ]
-              ) : Center(child: CircularProgressIndicator());
-            }
+                    ),
+                  ]
+                )
+              ]
+            ) : Center(child: CircularProgressIndicator());
+          }
         ),
       ),
     );
