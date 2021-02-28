@@ -1,8 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
 import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/storage/dao/UserDao.dart';
-import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 
 part 'HomeStore.g.dart';
 
@@ -17,7 +15,7 @@ abstract class _HomeStore with Store{
   _HomeStore(HomeDomain homeDomain) : _domain = homeDomain;
 
   @observable
-  ObservableList<UserModel> userList = ObservableList<UserModel>();
+  ObservableList<UserModel> userList = ObservableList<UserModel>().asObservable();
 
   @action
   Future getAll() async {
@@ -31,6 +29,7 @@ abstract class _HomeStore with Store{
   void insert(UserModel user){
     userList.clear();
     _domain.insert(user);
+    getAll();
   }
 
   @action

@@ -9,20 +9,19 @@ class ServiceLocator{
   HomeDomain homeDomain;
   UserDao userDao;
 
-  init() async{
-    await userDb();
+  Future init() async{
+    await userDbModule();
     await homeModule();
   }
 
-   Future homeModule(){
+   Future homeModule() async {
     homeDomain = HomeDomain(userDao);
     homeStore = HomeStore(homeDomain);
-
   }
 
   AppDatabase get _db => AppDatabase.instance;
 
-  Future userDb(){
+  Future userDbModule() async {
     userDao = UserDao(_db);
   }
 }

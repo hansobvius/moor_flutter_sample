@@ -1,4 +1,3 @@
-import 'package:moor/moor.dart';
 
 class BaseDatabase{
 
