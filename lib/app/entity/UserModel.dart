@@ -6,7 +6,7 @@ class UserModel{
 
   UserModel({this.name, this.genre, this.value});
 
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toJson(){
     return {
       'name': name,
       'genre': genre,
@@ -14,6 +14,6 @@ class UserModel{
     };
   }
 
-  UserModel fromMap(Map json) =>
+  UserModel fromJson(Map json) =>
       UserModel(name: json['name'], genre: json['genre'], value: json['value']);
 }
