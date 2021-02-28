@@ -31,6 +31,7 @@ dev_dependencies:
   moor_generator: 3.4.0
   build_runner: 1.10.11
   mobx_codegen: 1.1.2
+  network_image_mock: ^1.1.0
 
 flutter:
 
