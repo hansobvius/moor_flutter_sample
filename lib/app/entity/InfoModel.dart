@@ -5,7 +5,7 @@ class InfoModel{
   String title;
   String description;
 
-  InfoModel(this.image, this.title, this.description);
+  InfoModel({this.image, this.title, this.description});
 
   Map<String, dynamic> toJson(){
     return {
@@ -17,9 +17,9 @@ class InfoModel{
 
   InfoModel fromJson(Map<String, dynamic> json){
     return InfoModel(
-        json['image'],
-        json['title'],
-        json['description']
+        image: json['image'],
+        title: json['title'],
+        description: json['description']
     );
   }
 
