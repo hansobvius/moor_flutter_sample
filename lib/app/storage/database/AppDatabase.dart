@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/storage/dao/UserDao.dart';
-import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
+import 'package:moor_flutter/app/storage/dao/info_dao/InfoDao.dart';
+import 'package:moor_flutter/app/storage/dao/user_dao/UserDao.dart';
+import 'package:moor_flutter/app/storage/entity_table/info_table/InfoTable.dart';
+import 'package:moor_flutter/app/storage/entity_table/user_table/UserTable.dart';
 import 'package:moor_flutter/app/storage/migration/DatabaseMigration.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -18,7 +20,7 @@ LazyDatabase _openConnection() {
   });
 }
 
-@UseMoor(tables: [UserTable], daos: [UserDao])
+@UseMoor(tables: [UserTable, InfoTable], daos: [UserDao, InfoDao])
 class AppDatabase extends _$AppDatabase{
   AppDatabase() : super(_openConnection());
 

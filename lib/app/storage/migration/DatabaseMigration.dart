@@ -21,7 +21,7 @@ class DatabaseMigration<T extends DataClass> implements IMigration{
       onUpgrade: (Migrator m, int from, int to) async {
         if (from <= version) {
           print("SCHEMA VERSION: ${version} FROM: $from TO $to");
-          await m.addColumn(_db.userTable, _db.userTable.genre);
+          // await m.addColumn(_db.userTable, _db.userTable.genre);
         }
       }
   );

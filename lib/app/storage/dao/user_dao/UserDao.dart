@@ -1,8 +1,8 @@
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/storage/BaseDatabase.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
-import 'package:moor_flutter/app/storage/entity_table/UserTable.dart';
-import '../BaseDao.dart';
+import 'package:moor_flutter/app/storage/entity_table/user_table/UserTable.dart';
+import '../../BaseDao.dart';
 
 part 'UserDao.g.dart';
 
