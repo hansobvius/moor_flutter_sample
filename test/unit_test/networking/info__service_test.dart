@@ -4,21 +4,21 @@ import 'package:test/test.dart';
 
 void main(){
 
-  MockInfo _mockInfo;
+  InfoUserService _mockInfo;
 
   group('info service test', (){
 
     setUp((){
-      _mockInfo = MockInfo();
+      _mockInfo = InfoUserService();
     });
 
     test('json return success', () async {
-      var value = await _mockInfo.getInfo();
+      var value = await _mockInfo.getInfoService();
       expect(value != null, true);
     });
 
     test('json return entity type', () async {
-      var value = await _mockInfo.getInfo();
+      var value = await _mockInfo.getInfoService();
       expect(value is InfoModel, true);
     });
 

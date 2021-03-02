@@ -1,8 +1,8 @@
 import 'package:moor_flutter/app/entity/InfoModel.dart';
 
-class MockInfo{
+class InfoUserService{
 
-  Future<InfoModel> getInfo() async {
+  Future<InfoModel> getInfoService() async {
 
     Object infoModelJson;
 

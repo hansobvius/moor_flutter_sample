@@ -275,7 +275,7 @@ class Info extends DataClass implements Insertable<Info> {
   final int id;
   final String image;
   final String title;
-  final int description;
+  final String description;
   Info({@required this.id, this.image, this.title, this.description});
   factory Info.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
@@ -288,7 +288,7 @@ class Info extends DataClass implements Insertable<Info> {
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}image']),
       title:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}title']),
-      description: intType
+      description: stringType
           .mapFromDatabaseResponse(data['${effectivePrefix}description']),
     );
   }
@@ -305,7 +305,7 @@ class Info extends DataClass implements Insertable<Info> {
       map['title'] = Variable<String>(title);
     }
     if (!nullToAbsent || description != null) {
-      map['description'] = Variable<int>(description);
+      map['description'] = Variable<String>(description);
     }
     return map;
   }
@@ -330,7 +330,7 @@ class Info extends DataClass implements Insertable<Info> {
       id: serializer.fromJson<int>(json['id']),
       image: serializer.fromJson<String>(json['image']),
       title: serializer.fromJson<String>(json['title']),
-      description: serializer.fromJson<int>(json['description']),
+      description: serializer.fromJson<String>(json['description']),
     );
   }
   @override
@@ -340,11 +340,12 @@ class Info extends DataClass implements Insertable<Info> {
       'id': serializer.toJson<int>(id),
       'image': serializer.toJson<String>(image),
       'title': serializer.toJson<String>(title),
-      'description': serializer.toJson<int>(description),
+      'description': serializer.toJson<String>(description),
     };
   }
 
-  Info copyWith({int id, String image, String title, int description}) => Info(
+  Info copyWith({int id, String image, String title, String description}) =>
+      Info(
         id: id ?? this.id,
         image: image ?? this.image,
         title: title ?? this.title,
@@ -378,7 +379,7 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
   final Value<int> id;
   final Value<String> image;
   final Value<String> title;
-  final Value<int> description;
+  final Value<String> description;
   const InfoTableCompanion({
     this.id = const Value.absent(),
     this.image = const Value.absent(),
@@ -395,7 +396,7 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
     Expression<int> id,
     Expression<String> image,
     Expression<String> title,
-    Expression<int> description,
+    Expression<String> description,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -409,7 +410,7 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
       {Value<int> id,
       Value<String> image,
       Value<String> title,
-      Value<int> description}) {
+      Value<String> description}) {
     return InfoTableCompanion(
       id: id ?? this.id,
       image: image ?? this.image,
@@ -431,7 +432,7 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
       map['title'] = Variable<String>(title.value);
     }
     if (description.present) {
-      map['description'] = Variable<int>(description.value);
+      map['description'] = Variable<String>(description.value);
     }
     return map;
   }
@@ -484,16 +485,13 @@ class $InfoTableTable extends InfoTable with TableInfo<$InfoTableTable, Info> {
 
   final VerificationMeta _descriptionMeta =
       const VerificationMeta('description');
-  GeneratedIntColumn _description;
+  GeneratedTextColumn _description;
   @override
-  GeneratedIntColumn get description =>
+  GeneratedTextColumn get description =>
       _description ??= _constructDescription();
-  GeneratedIntColumn _constructDescription() {
-    return GeneratedIntColumn(
-      'description',
-      $tableName,
-      true,
-    );
+  GeneratedTextColumn _constructDescription() {
+    return GeneratedTextColumn('description', $tableName, true,
+        defaultValue: const Constant(''));
   }
 
   @override
