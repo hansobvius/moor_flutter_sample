@@ -15,12 +15,11 @@ class InfoModel{
     };
   }
 
-  InfoModel fromJson(Map<String, dynamic> json){
+  factory InfoModel.fromJson(Map<String, dynamic> json){
     return InfoModel(
         image: json['image'],
         title: json['title'],
         description: json['description']
     );
   }
-
 }

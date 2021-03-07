@@ -15,16 +15,22 @@ class InfoUserRepository{
   
   Future<List<Info>> initInfoRepository() async {
     await _service.getInfoService().then((value) => {
-      insert(value)
+      value.forEach((element) {
+        insert(element);
+      })
     });
     return await _dao.getAll();
   }
 
   Future insert(InfoModel infoEntity) async {
-    await _dao.insert(InfoTableCompanion(
-        image: Value("${infoEntity.image}"),
-        title: Value("${infoEntity.title}"),
-        description: Value("${infoEntity.description}")
-    ));
+    try{
+      await _dao.insert(InfoTableCompanion(
+          image: Value("${infoEntity.image}"),
+          title: Value("${infoEntity.title}"),
+          description: Value("${infoEntity.description}")
+      ));
+    }catch(e){
+      print(e.toString());
+    }
   }
 }

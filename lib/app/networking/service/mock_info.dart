@@ -2,9 +2,9 @@ import 'package:moor_flutter/app/entity/InfoModel.dart';
 
 class InfoUserService{
 
-  Future<InfoModel> getInfoService() async {
-
-    Object infoModelJson;
+  Future<List<InfoModel>> getInfoService() async {
+    List<InfoModel> infoList = [];
+    dynamic infoModelJson;
 
     await Future.delayed(Duration(seconds: 2), (){
       infoModelJson = {
@@ -53,7 +53,11 @@ class InfoUserService{
       };
     });
 
-    return InfoModel().fromJson(infoModelJson);
-  }
 
+    (infoModelJson["results"] as List).map((json) => {
+      infoList.add(InfoModel.fromJson(json))
+    }).toList();
+
+    return infoList;
+  }
 }

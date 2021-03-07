@@ -19,12 +19,19 @@ void main(){
 
     test('json return entity type', () async {
       var value = await _mockInfo.getInfoService();
-      expect(value is InfoModel, true);
+      expect(value is List<InfoModel>, true);
     });
 
     /// FIXME - retrive data are incorrct, must be a list of InfoModel
     test('model has data', () async {
       var value = await _mockInfo.getInfoService();
+      expect(value != null, true);
+    });
+
+    test('mddel has lenght', () async {
+      var value = await _mockInfo.getInfoService();
+      expect(value.length > 0, true);
+      expect(value.length < 0, false);
     });
 
     tearDown((){
