@@ -14,7 +14,6 @@ class InfoUserRepository{
         _service = service;
   
   Future<List<Info>> initInfoRepository() async {
-    List<Info> infoListModel = List<Info>();
     await _service.getInfoService().then((value) => {
       insert(value)
     });
@@ -22,11 +21,10 @@ class InfoUserRepository{
   }
 
   Future insert(InfoModel infoEntity) async {
-    var user = InfoTableCompanion(
+    await _dao.insert(InfoTableCompanion(
         image: Value("${infoEntity.image}"),
         title: Value("${infoEntity.title}"),
         description: Value("${infoEntity.description}")
-    );
-    await _dao.insert(user);
+    ));
   }
 }

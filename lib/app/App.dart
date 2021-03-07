@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moor_flutter/app/ui/home/Home.dart';
 
 import 'di/ServiceLocator.dart';
+import 'ui/info/Info.dart';
 
 class App extends StatelessWidget{
 
@@ -17,7 +18,7 @@ class App extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(serviceLocator: serviceLocator,),
+      home: InfoView(serviceLocator: serviceLocator,),
     );
   }
 }

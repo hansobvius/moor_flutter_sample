@@ -24,17 +24,12 @@ mixin _$InfoStore on _InfoStore, Store {
     });
   }
 
-  final _$_InfoStoreActionController = ActionController(name: '_InfoStore');
+  final _$getInfoModelListAsyncAction =
+      AsyncAction('_InfoStore.getInfoModelList');
 
   @override
-  void getInfoModelList() {
-    final _$actionInfo = _$_InfoStoreActionController.startAction(
-        name: '_InfoStore.getInfoModelList');
-    try {
-      return super.getInfoModelList();
-    } finally {
-      _$_InfoStoreActionController.endAction(_$actionInfo);
-    }
+  Future<dynamic> getInfoModelList() {
+    return _$getInfoModelListAsyncAction.run(() => super.getInfoModelList());
   }
 
   @override

@@ -5,17 +5,17 @@ import 'package:moor_flutter/app/di/ServiceLocator.dart';
 import 'package:moor_flutter/app/entity/UserModel.dart';
 import 'package:moor_flutter/app/store/home/HomeStore.dart';
 
-class Home extends StatefulWidget{
+class HomeView extends StatefulWidget{
 
   final ServiceLocator serviceLocator;
 
-  Home({this.serviceLocator});
+  HomeView({this.serviceLocator});
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeState extends State<Home>{
+class _HomeViewState extends State<HomeView>{
 
   HomeStore _store;
 
