@@ -1,7 +1,9 @@
 import 'package:moor_flutter/app/entity/InfoModel.dart';
+import '../BaseService.dart';
 
-class InfoUserService{
+class InfoUserService extends BaseService<InfoModel>{
 
+  @override
   Future<List<InfoModel>> getInfoService() async {
     List<InfoModel> infoList = [];
     dynamic infoModelJson;

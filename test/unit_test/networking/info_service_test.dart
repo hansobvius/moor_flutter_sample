@@ -22,7 +22,6 @@ void main(){
       expect(value is List<InfoModel>, true);
     });
 
-    /// FIXME - retrive data are incorrct, must be a list of InfoModel
     test('model has data', () async {
       var value = await _mockInfo.getInfoService();
       expect(value != null, true);
