@@ -1,7 +1,7 @@
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:test/test.dart';
-import 'dao_test/UserDao.dart';
+import 'dao_test/user/UserDao.dart';
 import 'database_test/DatabaseTest.dart';
 
 void main(){

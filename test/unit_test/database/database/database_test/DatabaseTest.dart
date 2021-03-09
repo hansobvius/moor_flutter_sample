@@ -1,10 +1,14 @@
 import 'package:moor/moor.dart';
-import '../dao_test/UserDao.dart';
-import '../table_test/TableTest.dart';
+import 'package:moor_flutter/app/storage/dao/info_dao/InfoDao.dart';
+import 'package:moor_flutter/app/storage/entity_table/info_table/InfoTable.dart';
+import '../dao_test/info/InfoTestDao.dart';
+import '../dao_test/user/UserDao.dart';
+import '../table_test/info/InfoTestTable.dart';
+import '../table_test/user/TableTest.dart';
 
 part 'DatabaseTest.g.dart';
 
-@UseMoor(tables: [TableTest], daos: [UserDao])
+@UseMoor(tables: [TableTest, InfoTestTable], daos: [UserDao, InfoTestDao])
 class DatabaseTest extends _$DatabaseTest{
 
   DatabaseTest(QueryExecutor e) : super(e);
