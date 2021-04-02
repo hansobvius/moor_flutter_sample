@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/entity/InfoModel.dart';
-import 'package:moor_flutter/app/networking/service/mock_info.dart';
+import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import 'package:moor_flutter/app/storage/dao/info_dao/InfoDao.dart';
 import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
 

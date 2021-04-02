@@ -1,6 +1,6 @@
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
 import 'package:moor_flutter/app/domain/InfoDomain.dart';
-import 'package:moor_flutter/app/networking/service/mock_info.dart';
+import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import 'package:moor_flutter/app/repository/user_info_repository.dart';
 import 'package:moor_flutter/app/storage/dao/info_dao/InfoDao.dart';
 import 'package:moor_flutter/app/storage/dao/user_dao/UserDao.dart';
@@ -18,6 +18,8 @@ class ServiceLocator{
   InfoUserRepository infoUserRepository;
   InfoUserService infoUserService;
   InfoStore infoStore;
+
+  static final ServiceLocator instance = ServiceLocator();
 
   Future init() async{
     serviceModule();

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:moor/ffi.dart';
-import 'package:moor_flutter/app/networking/service/mock_info.dart';
+import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import '../database/database/dao_test/info/InfoTestDao.dart';
 import '../database/database/database_test/DatabaseTest.dart';
 import '../util/NetworkConnectivity.dart';
