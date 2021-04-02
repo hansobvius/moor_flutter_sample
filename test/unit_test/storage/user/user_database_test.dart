@@ -5,10 +5,6 @@ import 'dao/UserDao.dart';
 import '../DatabaseTest.dart';
 
 void main(){
-  dbTest();
-}
-
-void dbTest(){
 
   DatabaseTest _db;
   UserDao _dao;
@@ -42,6 +38,5 @@ void dbTest(){
     // });
   });
 }
-
 
 
