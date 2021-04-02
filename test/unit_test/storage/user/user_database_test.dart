@@ -1,8 +1,8 @@
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:test/test.dart';
-import 'dao_test/user/UserDao.dart';
-import 'database_test/DatabaseTest.dart';
+import 'dao/UserDao.dart';
+import '../DatabaseTest.dart';
 
 void main(){
   dbTest();
@@ -21,7 +21,7 @@ void dbTest(){
     });
 
     test('users can be created', () async {
-      var user = TableTestCompanion(
+      var user = UserTableCompanion(
           name: Value("name"),
           value: Value(10)
       );
@@ -29,7 +29,7 @@ void dbTest(){
     });
 
     test('check data insertion', ()  async {
-      Future<List<table>>  result = _dao.getAll();
+      Future<List<User>>  result = _dao.getAll();
       result.then((value) => {
         expect(value[0].name, 'name'),
         expect(value[0].value, 10)

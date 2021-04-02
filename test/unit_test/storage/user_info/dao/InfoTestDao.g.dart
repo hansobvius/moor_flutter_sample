@@ -7,5 +7,5 @@ part of 'InfoTestDao.dart';
 // **************************************************************************
 
 mixin _$InfoTestDaoMixin on DatabaseAccessor<DatabaseTest> {
-  $InfoTestTableTable get infoTestTable => attachedDatabase.infoTestTable;
+  $UserInfoTableTable get userInfoTable => attachedDatabase.userInfoTable;
 }

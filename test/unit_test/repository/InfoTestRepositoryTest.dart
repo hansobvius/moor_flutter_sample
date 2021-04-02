@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-
-import '../database/database/database_test/DatabaseTest.dart';
+import '../storage/DatabaseTest.dart';
 import '../util/NetworkConnectivity.dart';
 import 'InfoTestRepository.dart';
 
@@ -22,7 +21,7 @@ void main(){
 
     test('checl db', () async {
       var result = await _infoTestRepository.dao.getAll();
-      expect(result is List<TestInfo>, true);
+      expect(result is List<UserInfo>, true);
     });
 
     test('repository test', () async {

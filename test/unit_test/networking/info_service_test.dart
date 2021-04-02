@@ -27,7 +27,7 @@ void main(){
       expect(value != null, true);
     });
 
-    test('mddel has lenght', () async {
+    test('model has lenght', () async {
       var value = await _mockInfo.getInfoService();
       expect(value.length > 0, true);
       expect(value.length < 0, false);

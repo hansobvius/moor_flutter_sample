@@ -1,7 +1,7 @@
 import 'package:moor/moor.dart';
 
-@DataClassName('TestInfo')
-class InfoTestTable extends Table{
+@DataClassName('UserInfo')
+class UserInfoTable extends Table{
 
   IntColumn get id => integer().autoIncrement()();
   TextColumn get image => text().nullable()();

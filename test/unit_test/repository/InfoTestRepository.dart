@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:moor/ffi.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
-import '../database/database/dao_test/info/InfoTestDao.dart';
-import '../database/database/database_test/DatabaseTest.dart';
+import '../storage/DatabaseTest.dart';
+import '../storage/user_info/dao/InfoTestDao.dart';
 import '../util/NetworkConnectivity.dart';
 import 'IRepository.dart';
 
-class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, TestInfo>{
+class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, UserInfo>{
 
   NetworkConnectivity _connectivity;
 
@@ -20,13 +19,13 @@ class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, TestI
   InfoUserService getService() => InfoUserService();
 
   @override
-  Future<List<TestInfo>> getServiceData() async {
+  Future<List<UserInfo>> getServiceData() async {
     if(_connectivity.isConnected){
       try{
         await service.getInfoService().then((value) => {
           if(value != null) {
             value.map((e) => {
-              inject(TestInfo.fromJson(e.toJson()))
+              inject(UserInfo.fromJson(e.toJson()))
            }),
           }
         });
@@ -38,7 +37,7 @@ class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, TestI
   }
 
   @override
-  Future inject(TestInfo data) async {
+  Future inject(UserInfo data) async {
     try{
       await dao.insert(data);
     }on IOException catch(e){

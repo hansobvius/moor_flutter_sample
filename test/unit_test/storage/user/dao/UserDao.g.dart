@@ -7,5 +7,5 @@ part of 'UserDao.dart';
 // **************************************************************************
 
 mixin _$UserDaoMixin on DatabaseAccessor<DatabaseTest> {
-  $TableTestTable get tableTest => attachedDatabase.tableTest;
+  $UserTableTable get userTable => attachedDatabase.userTable;
 }
