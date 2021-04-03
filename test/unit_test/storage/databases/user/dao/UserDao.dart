@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import '../../core/DatabaseTest.dart';
+import '../../../core/DatabaseTest.dart';
 import '../table/user_table.dart';
 
 part 'UserDao.g.dart';
