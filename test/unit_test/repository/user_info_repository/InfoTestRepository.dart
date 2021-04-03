@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:moor/ffi.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
-import '../storage/DatabaseTest.dart';
-import '../storage/user_info/dao/InfoTestDao.dart';
-import '../util/NetworkConnectivity.dart';
-import 'IRepository.dart';
+import '../../storage/core/DatabaseTest.dart';
+import '../../storage/user_info/dao/InfoTestDao.dart';
+import '../../util/NetworkConnectivity.dart';
+import '../IRepository.dart';
 
 class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, UserInfo>{
 

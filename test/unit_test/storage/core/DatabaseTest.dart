@@ -1,8 +1,9 @@
 import 'package:moor/moor.dart';
-import 'user/dao/UserDao.dart';
-import 'user/table/user_table.dart';
-import 'user_info/dao/InfoTestDao.dart';
-import 'user_info/table/user_info_table.dart';
+import 'package:moor_flutter/app/storage/user_storage/user_table/UserTable.dart';
+
+import '../user/dao/UserDao.dart';
+import '../user_info/dao/InfoTestDao.dart';
+import '../user_info/table/user_info_table.dart';
 
 part 'DatabaseTest.g.dart';
 

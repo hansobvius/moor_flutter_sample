@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/storage/BaseDao.dart';
-import '../../DatabaseTest.dart';
+import 'package:moor_flutter/app/storage/core/BaseDao.dart';
+import '../../core/DatabaseTest.dart';
 import '../table/user_info_table.dart';
 
 part 'InfoTestDao.g.dart';

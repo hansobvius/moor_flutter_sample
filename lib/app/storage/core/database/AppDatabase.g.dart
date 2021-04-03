@@ -271,18 +271,18 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   }
 }
 
-class Info extends DataClass implements Insertable<Info> {
+class InfoUser extends DataClass implements Insertable<InfoUser> {
   final int id;
   final String image;
   final String title;
   final String description;
-  Info({@required this.id, this.image, this.title, this.description});
-  factory Info.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  InfoUser({@required this.id, this.image, this.title, this.description});
+  factory InfoUser.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return Info(
+    return InfoUser(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       image:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}image']),
@@ -310,8 +310,8 @@ class Info extends DataClass implements Insertable<Info> {
     return map;
   }
 
-  InfoTableCompanion toCompanion(bool nullToAbsent) {
-    return InfoTableCompanion(
+  InfoUserTableCompanion toCompanion(bool nullToAbsent) {
+    return InfoUserTableCompanion(
       id: id == null && nullToAbsent ? const Value.absent() : Value(id),
       image:
           image == null && nullToAbsent ? const Value.absent() : Value(image),
@@ -323,10 +323,10 @@ class Info extends DataClass implements Insertable<Info> {
     );
   }
 
-  factory Info.fromJson(Map<String, dynamic> json,
+  factory InfoUser.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return Info(
+    return InfoUser(
       id: serializer.fromJson<int>(json['id']),
       image: serializer.fromJson<String>(json['image']),
       title: serializer.fromJson<String>(json['title']),
@@ -344,8 +344,8 @@ class Info extends DataClass implements Insertable<Info> {
     };
   }
 
-  Info copyWith({int id, String image, String title, String description}) =>
-      Info(
+  InfoUser copyWith({int id, String image, String title, String description}) =>
+      InfoUser(
         id: id ?? this.id,
         image: image ?? this.image,
         title: title ?? this.title,
@@ -353,7 +353,7 @@ class Info extends DataClass implements Insertable<Info> {
       );
   @override
   String toString() {
-    return (StringBuffer('Info(')
+    return (StringBuffer('InfoUser(')
           ..write('id: $id, ')
           ..write('image: $image, ')
           ..write('title: $title, ')
@@ -368,31 +368,31 @@ class Info extends DataClass implements Insertable<Info> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is Info &&
+      (other is InfoUser &&
           other.id == this.id &&
           other.image == this.image &&
           other.title == this.title &&
           other.description == this.description);
 }
 
-class InfoTableCompanion extends UpdateCompanion<Info> {
+class InfoUserTableCompanion extends UpdateCompanion<InfoUser> {
   final Value<int> id;
   final Value<String> image;
   final Value<String> title;
   final Value<String> description;
-  const InfoTableCompanion({
+  const InfoUserTableCompanion({
     this.id = const Value.absent(),
     this.image = const Value.absent(),
     this.title = const Value.absent(),
     this.description = const Value.absent(),
   });
-  InfoTableCompanion.insert({
+  InfoUserTableCompanion.insert({
     this.id = const Value.absent(),
     this.image = const Value.absent(),
     this.title = const Value.absent(),
     this.description = const Value.absent(),
   });
-  static Insertable<Info> custom({
+  static Insertable<InfoUser> custom({
     Expression<int> id,
     Expression<String> image,
     Expression<String> title,
@@ -406,12 +406,12 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
     });
   }
 
-  InfoTableCompanion copyWith(
+  InfoUserTableCompanion copyWith(
       {Value<int> id,
       Value<String> image,
       Value<String> title,
       Value<String> description}) {
-    return InfoTableCompanion(
+    return InfoUserTableCompanion(
       id: id ?? this.id,
       image: image ?? this.image,
       title: title ?? this.title,
@@ -439,7 +439,7 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
 
   @override
   String toString() {
-    return (StringBuffer('InfoTableCompanion(')
+    return (StringBuffer('InfoUserTableCompanion(')
           ..write('id: $id, ')
           ..write('image: $image, ')
           ..write('title: $title, ')
@@ -449,10 +449,11 @@ class InfoTableCompanion extends UpdateCompanion<Info> {
   }
 }
 
-class $InfoTableTable extends InfoTable with TableInfo<$InfoTableTable, Info> {
+class $InfoUserTableTable extends InfoUserTable
+    with TableInfo<$InfoUserTableTable, InfoUser> {
   final GeneratedDatabase _db;
   final String _alias;
-  $InfoTableTable(this._db, [this._alias]);
+  $InfoUserTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   GeneratedIntColumn _id;
   @override
@@ -497,13 +498,13 @@ class $InfoTableTable extends InfoTable with TableInfo<$InfoTableTable, Info> {
   @override
   List<GeneratedColumn> get $columns => [id, image, title, description];
   @override
-  $InfoTableTable get asDslTable => this;
+  $InfoUserTableTable get asDslTable => this;
   @override
-  String get $tableName => _alias ?? 'info_table';
+  String get $tableName => _alias ?? 'info_user_table';
   @override
-  final String actualTableName = 'info_table';
+  final String actualTableName = 'info_user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<Info> instance,
+  VerificationContext validateIntegrity(Insertable<InfoUser> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -530,14 +531,14 @@ class $InfoTableTable extends InfoTable with TableInfo<$InfoTableTable, Info> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Info map(Map<String, dynamic> data, {String tablePrefix}) {
+  InfoUser map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return Info.fromData(data, _db, prefix: effectivePrefix);
+    return InfoUser.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override
-  $InfoTableTable createAlias(String alias) {
-    return $InfoTableTable(_db, alias);
+  $InfoUserTableTable createAlias(String alias) {
+    return $InfoUserTableTable(_db, alias);
   }
 }
 
@@ -545,14 +546,17 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   $UserTableTable _userTable;
   $UserTableTable get userTable => _userTable ??= $UserTableTable(this);
-  $InfoTableTable _infoTable;
-  $InfoTableTable get infoTable => _infoTable ??= $InfoTableTable(this);
+  $InfoUserTableTable _infoUserTable;
+  $InfoUserTableTable get infoUserTable =>
+      _infoUserTable ??= $InfoUserTableTable(this);
   UserDao _userDao;
   UserDao get userDao => _userDao ??= UserDao(this as AppDatabase);
-  InfoDao _infoDao;
-  InfoDao get infoDao => _infoDao ??= InfoDao(this as AppDatabase);
+  InfoUserDao _infoUserDao;
+  InfoUserDao get infoUserDao =>
+      _infoUserDao ??= InfoUserDao(this as AppDatabase);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [userTable, infoTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [userTable, infoUserTable];
 }

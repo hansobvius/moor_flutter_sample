@@ -1,19 +1,19 @@
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/entity/InfoModel.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
-import 'package:moor_flutter/app/storage/dao/info_dao/InfoDao.dart';
-import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
+import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
+import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/InfoUserDao.dart';
 
 class InfoUserRepository{
   
-  InfoDao _dao;
+  InfoUserDao _dao;
   InfoUserService _service;
   
-  InfoUserRepository(InfoDao dao, InfoUserService service) : 
+  InfoUserRepository(InfoUserDao dao, InfoUserService service) :
         _dao = dao, 
         _service = service;
   
-  Future<List<Info>> initInfoRepository() async {
+  Future<List<InfoUser>> initInfoRepository() async {
     await _service.getInfoService().then((value) => {
       value.forEach((element) {
         insert(element);
@@ -24,7 +24,7 @@ class InfoUserRepository{
 
   Future insert(InfoModel infoEntity) async {
     try{
-      await _dao.insert(InfoTableCompanion(
+      await _dao.insert(InfoUserTableCompanion(
           image: Value("${infoEntity.image}"),
           title: Value("${infoEntity.title}"),
           description: Value("${infoEntity.description}")

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../storage/DatabaseTest.dart';
-import '../util/NetworkConnectivity.dart';
+import '../../storage/core/DatabaseTest.dart';
+import '../../util/NetworkConnectivity.dart';
 import 'InfoTestRepository.dart';
 
 void main(){

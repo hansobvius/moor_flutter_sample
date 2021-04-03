@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/storage/database/AppDatabase.dart';
+import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 
 abstract class IMigration{
 
