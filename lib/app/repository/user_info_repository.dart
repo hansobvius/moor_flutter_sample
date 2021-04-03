@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/entity/info_user/InfoUserModel.dart';
+import 'package:moor_flutter/app/entity/info_user/InfoUserModel.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/InfoUserDao.dart';

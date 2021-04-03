@@ -3,9 +3,16 @@ import 'company_department_model.dart';
 class Company{
 
   int id;
-  List<CompanyDepartment> companyDepartament;
+  String name;
+  List<CompanyDepartment> company_department;
 
-  Company({this.id, this.companyDepartament});
+  Company({this.id, this.name, this.company_department});
+
+  factory Company.fromJson(Map<String, dynamic> json) => Company(
+    id: json['id'],
+    name: json['name'],
+    company_department: json['companies']
+  );
 }
 
 

@@ -1,8 +1,12 @@
 class CompanyEmployee{
 
   int id;
-  int parentId;
   String name;
 
-  CompanyEmployee({this.id, this.parentId, this.name});
+  CompanyEmployee({this.id, this.name});
+
+  factory CompanyEmployee.fromJson(Map<String, dynamic> json) => CompanyEmployee(
+    id: json['id'],
+    name: json['name']
+  );
 }

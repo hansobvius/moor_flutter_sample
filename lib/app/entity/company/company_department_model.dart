@@ -3,8 +3,14 @@ import 'company_employee_model.dart';
 class CompanyDepartment{
 
   int id;
-  int parentId;
-  List<CompanyEmployee> companyEmployee;
+  String department_name;
+  List<CompanyEmployee> company_employees;
 
-  CompanyDepartment({this.id, this.parentId, this.companyEmployee});
+  CompanyDepartment({this.id, this.department_name, this.company_employees});
+
+  factory CompanyDepartment.fromJson(Map<String, dynamic> json) => CompanyDepartment(
+    id: json['id'],
+    department_name: json['department_name'],
+    company_employees: json['company_employees']
+  );
 }

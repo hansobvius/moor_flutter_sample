@@ -21,7 +21,7 @@ class ServiceLocator{
 
   static final ServiceLocator instance = ServiceLocator();
 
-  Future init() async{
+  Future init() async {
     serviceModule();
     await dbModule();
     await homeModule();
