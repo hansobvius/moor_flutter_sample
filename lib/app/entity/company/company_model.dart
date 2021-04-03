@@ -11,7 +11,10 @@ class Company{
   factory Company.fromJson(Map<String, dynamic> json) => Company(
     id: json['id'],
     name: json['name'],
-    company_department: json['companies']
+    company_department: (json["company_department"] as List)?.map((element) => element == null
+      ? null
+      : CompanyDepartment.fromJson(element as Map<String, dynamic>)
+    )?.toList()
   );
 }
 

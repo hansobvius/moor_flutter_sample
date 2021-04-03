@@ -11,6 +11,9 @@ class CompanyDepartment{
   factory CompanyDepartment.fromJson(Map<String, dynamic> json) => CompanyDepartment(
     id: json['id'],
     department_name: json['department_name'],
-    company_employees: json['company_employees']
+    company_employees: (json['company_employees'] as List)?.map((element) => element == null
+      ? null
+      : CompanyEmployee.fromJson(element as Map<String, dynamic>)
+    )?.toList()
   );
 }

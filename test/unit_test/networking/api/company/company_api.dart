@@ -1,5 +1,5 @@
 import 'package:moor_flutter/app/entity/company/company_model.dart';
-import 'package:moor_flutter/app/networking/service/company_service.dart';
+import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/networking/service/company/company_service.dart';
 import '../../core/ibase_service.dart';
 
 class CompanyApi extends IBaseService<CompanyService, Company>{
