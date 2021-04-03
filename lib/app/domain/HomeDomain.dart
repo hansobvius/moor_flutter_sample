@@ -1,5 +1,5 @@
 import 'package:moor/moor.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
+import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/entity/user/UserModel.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/user_storage/user_dao/UserDao.dart';
 

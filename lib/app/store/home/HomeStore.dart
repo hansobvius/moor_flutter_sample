@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
+import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/entity/user/UserModel.dart';
 
 part 'HomeStore.g.dart';
 

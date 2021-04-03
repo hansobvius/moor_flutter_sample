@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
+import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/entity/user/UserModel.dart';
 import 'package:moor_flutter/app/store/home/HomeStore.dart';
 
 class HomeView extends StatefulWidget{

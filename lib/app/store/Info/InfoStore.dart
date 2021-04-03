@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:moor_flutter/app/domain/InfoDomain.dart';
-import 'package:moor_flutter/app/entity/InfoModel.dart';
+import 'file:///F:/thiag/FlutterProjects/moor_flutter_sample/lib/app/entity/info_user/InfoUserModel.dart';
 
 part 'InfoStore.g.dart';
 
