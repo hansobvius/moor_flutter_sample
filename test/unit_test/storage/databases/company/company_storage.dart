@@ -12,5 +12,6 @@ class CompanyStorage extends IBaseStorage<CompanyDao>{
   @override
   CompanyDao getDao() => CompanyDao(DatabaseTest(VmDatabase.memory()));
 
-  Future insertCompany(CompanyTable table) => dao.insert(table);
+  Future insertCompany(CompanyTable table, DepartmentTable department, EmployeeTable employee) =>
+      dao.insert(table, department, employee);
 }

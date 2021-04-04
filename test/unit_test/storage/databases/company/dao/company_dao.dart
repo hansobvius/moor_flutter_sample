@@ -11,5 +11,9 @@ class CompanyDao extends DatabaseAccessor<DatabaseTest> with _$CompanyDaoMixin{
 
   CompanyDao(DatabaseTest database) : super(database);
 
-  Future insert(CompanyTable company) async => await into(companyDbTable).insert(company);
+  Future insert(CompanyTable company, DepartmentTable department, EmployeeTable employee) async {
+    await into(companyDbTable).insert(company);
+    await into(departmentDbTable).insert(department);
+    await into(employeeDbTable).insert(employee);
+  }
 }
