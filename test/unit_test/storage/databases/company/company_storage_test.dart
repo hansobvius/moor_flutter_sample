@@ -37,6 +37,7 @@ main(){
     });
 
     test('retrieve data from company storage', () async {
+      await _storage.insertCompany(getCompany());
       await _storage.retrieveCompany().then((value) => {
         expect(value != null, true),
       });
