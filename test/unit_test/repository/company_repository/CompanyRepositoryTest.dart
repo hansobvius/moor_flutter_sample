@@ -34,17 +34,6 @@ main(){
       _repository = CompanyRepository(_storage);
     });
 
-    test('storage insert company data', () async {
-      await _storage.insertCompany(getCompany());
-    });
-
-    test('storage insert retrieve', () async {
-      await _storage.insertCompany(getCompany());
-      await _storage.retrieveCompany().then((value) => {
-        expect(value != null, true),
-      });
-    });
-
     test('repository insert company data', () async {
       await _storage.insertCompany(getCompany());
     });
