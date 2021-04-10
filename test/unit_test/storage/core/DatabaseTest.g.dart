@@ -1215,11 +1215,11 @@ abstract class _$DatabaseTest extends GeneratedDatabase {
       _employeeDbTable ??= $EmployeeDbTableTable(this);
   InfoTestDao _infoTestDao;
   InfoTestDao get infoTestDao =>
-      _infoTestDao ??= InfoTestDao(this as DatabaseTest);
+      _infoTestDao ??= InfoTestDao();
   UserDao _userDao;
-  UserDao get userDao => _userDao ??= UserDao(this as DatabaseTest);
+  UserDao get userDao => _userDao ??= UserDao();
   CompanyDao _companyDao;
-  CompanyDao get companyDao => _companyDao ??= CompanyDao(this as DatabaseTest);
+  CompanyDao get companyDao => _companyDao ??= CompanyDao();
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

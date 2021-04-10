@@ -11,7 +11,7 @@ abstract class IBaseStorage<T>{
 class CompanyStorage extends IBaseStorage<CompanyDao>{
 
   @override
-  CompanyDao getDao() => CompanyDao(DatabaseTest(VmDatabase.memory()));
+  CompanyDao getDao() => CompanyDao();
 
   Future insertCompany(CompanyStorageDto storageDto) {
     dao.insert(

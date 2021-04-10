@@ -10,7 +10,7 @@ part 'company_dao.g.dart';
 @UseDao(tables: [CompanyDbTable, DepartmentDbTable, EmployeeDbTable])
 class CompanyDao extends DatabaseAccessor<DatabaseTest> with _$CompanyDaoMixin{
 
-  CompanyDao(DatabaseTest database) : super(database);
+  CompanyDao() : super(DatabaseTest.instance);
 
   Future insert(CompanyTable company, DepartmentTable department, EmployeeTable employee) async {
     await into(companyDbTable).insert(company);

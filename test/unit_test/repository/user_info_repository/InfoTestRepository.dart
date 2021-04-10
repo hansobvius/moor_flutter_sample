@@ -13,7 +13,7 @@ class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, UserI
   InfoTestRepository(NetworkConnectivity connectivity) : _connectivity = connectivity;
 
   @override
-  InfoTestDao getDao() => InfoTestDao(DatabaseTest(VmDatabase.memory()));
+  InfoTestDao getDao() => InfoTestDao();
 
   @override
   InfoUserService getService() => InfoUserService();

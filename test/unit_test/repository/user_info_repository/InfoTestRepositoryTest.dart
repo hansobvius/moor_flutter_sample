@@ -7,7 +7,7 @@ void main(){
 
   InfoTestRepository _infoTestRepository;
 
-  group('info test reposotory test', (){
+  group('info test repository test', (){
 
     setUp((){
        _infoTestRepository = InfoTestRepository(NetworkConnectivity());
@@ -19,7 +19,7 @@ void main(){
       expect(result != null, true);
     });
 
-    test('checl db', () async {
+    test('check db', () async {
       var result = await _infoTestRepository.dao.getAll();
       expect(result is List<UserInfo>, true);
     });

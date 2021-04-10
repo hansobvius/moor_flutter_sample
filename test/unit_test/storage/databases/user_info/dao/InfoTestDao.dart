@@ -11,7 +11,7 @@ class InfoTestDao
     with _$InfoTestDaoMixin
     implements BaseDao<UserInfo>{
 
-  InfoTestDao(DatabaseTest database) : super(database);
+  InfoTestDao() : super(DatabaseTest.instance);
 
   @override
   Future insert(Insertable<UserInfo> info) async => await into(userInfoTable).insert(info);
