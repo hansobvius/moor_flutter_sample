@@ -36,7 +36,8 @@ void main(){
     });
 
     test('repository getAll method by base repository test', () async {
-      await _infoTestRepository.getAll(InfoTestDao(DatabaseTest.instance), InfoUserService());
+      var result = await _infoTestRepository.getAll(InfoTestDao(DatabaseTest.instance), InfoUserService());
+      expect(result != null, true);
     });
 
     tearDown((){

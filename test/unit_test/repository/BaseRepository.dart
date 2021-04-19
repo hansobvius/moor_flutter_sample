@@ -1,4 +1,4 @@
-abstract class BaseRepository<A, S>{
+abstract class BaseRepository<A, S, E>{
 
   A getDao();
   A get dao => getDao();
@@ -10,5 +10,5 @@ abstract class BaseRepository<A, S>{
     getAll(dao, storage);
   }
 
-  getAll(A dao, S service);
+  Future<List<E>> getAll(A dao, S service);
 }

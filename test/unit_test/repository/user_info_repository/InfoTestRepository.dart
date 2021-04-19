@@ -7,7 +7,7 @@ import '../../util/NetworkConnectivity.dart';
 import '../BaseRepository.dart';
 import '../IRepository.dart';
 
-class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService> implements IRepository<InfoTestDao, InfoUserService, UserInfo> {
+class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, UserInfo> implements IRepository<InfoTestDao, InfoUserService, UserInfo> {
 
   NetworkConnectivity _connectivity;
 
@@ -52,16 +52,17 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService> im
 
   /// TODO - test BaseRepository abstract method
   @override
-  getAll(InfoTestDao dao, InfoUserService service) async {
+  Future<List<UserInfo>> getAll(InfoTestDao dao, InfoUserService service) async {
     try{
       await service.getInfoService().then((value) async {
         value.map((e) => {
           dao.insert(UserInfo.fromJson(e.toJson()))
         });
       });
+      return await dao.getAll();
     } catch(e) {
       e.toString();
     }
+    return null;
   }
-
 }
