@@ -12,10 +12,14 @@ class CompanyDao extends DatabaseAccessor<DatabaseTest> with _$CompanyDaoMixin{
 
   CompanyDao() : super(DatabaseTest.instance);
 
-  Future insert(CompanyTable company, DepartmentTable department, EmployeeTable employee) async {
+  Future insert(CompanyTable company, List<DepartmentTable> department, List<EmployeeTable> employee) async {
     await into(companyDbTable).insert(company);
-    await into(departmentDbTable).insert(department);
-    await into(employeeDbTable).insert(employee);
+    department.forEach((element) async {
+      await into(departmentDbTable).insert(element);
+    });
+    employee.forEach((element) async {
+      await into(employeeDbTable).insert(element);
+    });
   }
 
   Future<List<CompanyStorageDto>> getAll() async {

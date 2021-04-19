@@ -37,7 +37,7 @@ class DepartmentStorageDto{
     employeeList: []
   );
 
-  DepartmentTable toEmployeeTable() => DepartmentTable(
+  DepartmentTable toDepartmentTable() => DepartmentTable(
     id: this.id,
     parentId: this.parentId,
     name: this.name

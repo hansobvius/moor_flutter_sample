@@ -22,6 +22,8 @@ CompanyStorageDto getCompany() => CompanyStorageDto(
   ]
 );
 
+
+/// FIXME - tests are broking
 main(){
 
   CompanyStorage _storage;

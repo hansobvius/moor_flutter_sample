@@ -42,5 +42,14 @@ main(){
         expect(value != null, true),
       });
     });
+
+    test('test replace database', () async {
+      for(int count = 0; count <= 3; count++)
+        await _storage.insertCompany(getCompany());
+      await _storage.retrieveCompany().then((companies) {
+        print("TOTAL_COMPANIES: ${companies.length}");
+        expect(companies.length > 1, false);
+      });
+    });
   });
 }

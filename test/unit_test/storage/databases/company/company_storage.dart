@@ -19,18 +19,12 @@ class CompanyStorage extends IBaseStorage<CompanyDao>{
             id: storageDto.id,
             name: storageDto.name
         ),
-        DepartmentTable(
-          id: storageDto.departmentList[0].id,
-          parentId: storageDto.departmentList[0].parentId,
-          name: storageDto.departmentList[0].name
-        ),
-        EmployeeTable(
-            id: storageDto.departmentList[0].employeeList[0].id,
-            parentId: storageDto.departmentList[0].employeeList[0].parentId,
-            name: storageDto.departmentList[0].employeeList[0].name)
+        storageDto.departmentList.map((e) => e.toDepartmentTable()).toList(),
+        storageDto.departmentList.map((e) {
+          e.employeeList.map((e) => e.toEmployeeTable());
+        }).toList()
     );
   }
-
 
   Future<List<CompanyStorageDto>> retrieveCompany() => dao.getAll();
 
