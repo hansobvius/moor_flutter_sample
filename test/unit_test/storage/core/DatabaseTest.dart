@@ -1,3 +1,4 @@
+import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/storage/user_storage/user_table/UserTable.dart';
 
@@ -11,6 +12,8 @@ part 'DatabaseTest.g.dart';
 class DatabaseTest extends _$DatabaseTest{
 
   DatabaseTest(QueryExecutor e) : super(e);
+
+  static final DatabaseTest instance = DatabaseTest(VmDatabase.memory());
 
   @override
   int get schemaVersion => 1;

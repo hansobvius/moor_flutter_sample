@@ -4,19 +4,26 @@ import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import '../../storage/core/DatabaseTest.dart';
 import '../../storage/user_info/dao/InfoTestDao.dart';
 import '../../util/NetworkConnectivity.dart';
+import '../BaseRepository.dart';
 import '../IRepository.dart';
 
-class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, UserInfo>{
+class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService> implements IRepository<InfoTestDao, InfoUserService, UserInfo> {
 
   NetworkConnectivity _connectivity;
 
-  InfoTestRepository(NetworkConnectivity connectivity) : _connectivity = connectivity;
+  InfoTestRepository(InfoTestDao dao, InfoUserService service, NetworkConnectivity connectivity) : super(dao, service){
+    _connectivity = connectivity;
+  }
 
-  @override
-  InfoTestDao getDao() => InfoTestDao(DatabaseTest(VmDatabase.memory()));
+  /// Abstract methods provided by BaseRepository inheritance
+  InfoTestDao getApi() => InfoTestDao(DatabaseTest.instance);
+  InfoUserService getStorage() => InfoUserService();
 
-  @override
+  /// Abstract methods provided by IRepository interface
+  InfoTestDao getDao() => InfoTestDao(DatabaseTest.instance);
   InfoUserService getService() => InfoUserService();
+  InfoTestDao get dao => getDao();
+  InfoUserService get service => getService();
 
   @override
   Future<List<UserInfo>> getServiceData() async {
@@ -44,4 +51,9 @@ class InfoTestRepository extends IRepository<InfoTestDao, InfoUserService, UserI
       print(e.toString());
     }
   }
+
+  /// TODO - test BaseRepository abstract method
+  @override
+  getAll(InfoTestDao api, InfoUserService storage) {}
+
 }
