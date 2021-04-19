@@ -16,12 +16,10 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService> im
   }
 
   /// Abstract methods provided by BaseRepository inheritance
-  InfoTestDao getApi() => InfoTestDao(DatabaseTest.instance);
-  InfoUserService getStorage() => InfoUserService();
-
-  /// Abstract methods provided by IRepository interface
   InfoTestDao getDao() => InfoTestDao(DatabaseTest.instance);
   InfoUserService getService() => InfoUserService();
+
+  /// Abstract methods provided by IRepository interface
   InfoTestDao get dao => getDao();
   InfoUserService get service => getService();
 
@@ -54,6 +52,16 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService> im
 
   /// TODO - test BaseRepository abstract method
   @override
-  getAll(InfoTestDao api, InfoUserService storage) {}
+  getAll(InfoTestDao dao, InfoUserService service) async {
+    try{
+      await service.getInfoService().then((value) async {
+        value.map((e) => {
+          dao.insert(UserInfo.fromJson(e.toJson()))
+        });
+      });
+    } catch(e) {
+      e.toString();
+    }
+  }
 
 }

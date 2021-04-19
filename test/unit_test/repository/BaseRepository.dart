@@ -1,14 +1,14 @@
 abstract class BaseRepository<A, S>{
 
-  A getApi();
-  A get api => getApi();
+  A getDao();
+  A get dao => getDao();
 
-  S getStorage();
-  S get storage => getStorage();
+  S getService();
+  S get storage => getService();
 
-  BaseRepository(A api, S storage){
-    getAll(api, storage);
+  BaseRepository(A dao, S service){
+    getAll(dao, storage);
   }
 
-  getAll(A api, S storage);
+  getAll(A dao, S service);
 }
