@@ -14,7 +14,7 @@ class InfoTestDao
   InfoTestDao(DatabaseTest database) : super(database);
 
   @override
-  Future insert(Insertable<UserInfo> info) async => await into(userInfoTable).insert(info);
+  Future insert(UserInfo info) async => await into(userInfoTable).insert(info);
 
   @override
   Future<List<UserInfo>> getAll() async => await select(userInfoTable).get();

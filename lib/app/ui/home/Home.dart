@@ -70,7 +70,7 @@ class _HomeViewState extends State<HomeView>{
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
+                        child: TextButton(
                           child: Text('insert', style: TextStyle(fontSize: 14),),
                           onPressed: (){
                             this.insert(UserModel(name: "Thiago", genre: 'genre', value: Random().nextInt(10)));
@@ -81,7 +81,7 @@ class _HomeViewState extends State<HomeView>{
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
+                        child: TextButton(
                           child: Text('delete', style: TextStyle(fontSize: 14),),
                           onPressed: (){
                             this.delete();

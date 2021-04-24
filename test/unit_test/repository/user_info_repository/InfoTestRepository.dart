@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:moor/ffi.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import '../../storage/core/DatabaseTest.dart';
 import '../../storage/user_info/dao/InfoTestDao.dart';
@@ -12,6 +11,7 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
   NetworkConnectivity _connectivity;
 
   InfoTestRepository(InfoTestDao dao, InfoUserService service, NetworkConnectivity connectivity) : super(dao, service){
+    this.init();
     _connectivity = connectivity;
   }
 
@@ -23,7 +23,11 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
   InfoTestDao get dao => getDao();
   InfoUserService get service => getService();
 
-
+  void init() async {
+    get(callback: (value) async {
+       print("VALUE $value");
+    });
+  }
 
   @override
   Future<List<UserInfo>> getServiceData() async {
@@ -44,6 +48,9 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
   }
 
   @override
+  Function(Future<List<UserInfo>> p1) get functionCallback => super.functionCallback;
+
+  @override
   Future inject(UserInfo data) async {
     try{
       await dao.insert(data);
@@ -53,7 +60,6 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
   }
 
   /// TODO - test BaseRepository abstract method
-  @override
   Future<List<UserInfo>> getAll(InfoTestDao dao, InfoUserService service) async {
     try{
       await service.getInfoService().then((value) async {
@@ -67,15 +73,4 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
     }
     return null;
   }
-
-  // @override
-  // Future<List<UserInfo>> getDatabase({Function(Future<List<UserInfo>> data) callback}) {
-  //   // TODO: implement getDatabase
-  // }
-
-  // @override
-  // Future<E> get<E>(Future<List<E>> Function(InfoUserService value) onValue, {Function onError}) {
-  //   // TODO: implement get
-  //   throw UnimplementedError();
-  // }
 }

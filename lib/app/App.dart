@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moor_flutter/app/ui/home/Home.dart';
 
 import 'di/ServiceLocator.dart';
 import 'ui/info/Info.dart';

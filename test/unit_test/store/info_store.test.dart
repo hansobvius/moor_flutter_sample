@@ -11,7 +11,7 @@ void main(){
 
     setUp(() async {
       _serviceLocator = ServiceLocator();
-      await _serviceLocator
+      _serviceLocator
         ..serviceModule()
         ..dbModule()
         ..infoModule();

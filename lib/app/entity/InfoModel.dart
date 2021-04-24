@@ -1,5 +1,11 @@
 
-class InfoModel{
+abstract class BaseModel{
+  String image;
+  String title;
+  String description;
+}
+
+class InfoModel implements BaseModel{
 
   String image;
   String title;

@@ -4,7 +4,7 @@ import 'app/App.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var service = await ServiceLocator()..init();
+  var service = ServiceLocator()..init();
   runApp(App(serviceLocator: service));
 }
 

@@ -1,6 +1,5 @@
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/storage/core/BaseDao.dart';
-import 'package:moor_flutter/app/storage/core/BaseDatabase.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/user_storage/user_table/UserTable.dart';
 
@@ -10,7 +9,7 @@ part 'UserDao.g.dart';
 @UseDao(tables: [UserTable])
 class UserDao
     extends DatabaseAccessor<AppDatabase>
-    with _$UserDaoMixin, BaseDatabase
+    with _$UserDaoMixin
     implements BaseDao<User> {
 
   UserDao(AppDatabase database) : super(database);
