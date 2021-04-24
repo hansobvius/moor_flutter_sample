@@ -23,6 +23,8 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
   InfoTestDao get dao => getDao();
   InfoUserService get service => getService();
 
+
+
   @override
   Future<List<UserInfo>> getServiceData() async {
     if(_connectivity.isConnected){
@@ -65,4 +67,15 @@ class InfoTestRepository extends BaseRepository<InfoTestDao, InfoUserService, Us
     }
     return null;
   }
+
+  // @override
+  // Future<List<UserInfo>> getDatabase({Function(Future<List<UserInfo>> data) callback}) {
+  //   // TODO: implement getDatabase
+  // }
+
+  // @override
+  // Future<E> get<E>(Future<List<E>> Function(InfoUserService value) onValue, {Function onError}) {
+  //   // TODO: implement get
+  //   throw UnimplementedError();
+  // }
 }
