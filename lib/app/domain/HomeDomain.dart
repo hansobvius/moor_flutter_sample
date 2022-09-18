@@ -9,7 +9,7 @@ class HomeDomain{
 
   HomeDomain(UserDao dao) : _dao = dao;
 
-  Future<List<User>> getAll() async => await _dao.getAll();
+  Future<List<UserDatabase>> getAll() async => await _dao.getAll();
 
   Future insert(UserModel userEntity) async {
     var user = UserTableCompanion(
@@ -20,7 +20,7 @@ class HomeDomain{
     await _dao.insert(user);
   }
 
-  Future delete(User user) async => await _dao.deleteAll(user);
+  Future delete(UserDatabase user) async => await _dao.deleteAll(user);
 
-  Stream<List<User>> watchAll() => _dao.watchAll();
+  Stream<List<UserDatabase>> watchAll() => _dao.watchAll();
 }

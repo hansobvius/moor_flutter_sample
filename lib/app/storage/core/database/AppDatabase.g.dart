@@ -7,18 +7,18 @@ part of 'AppDatabase.dart';
 // **************************************************************************
 
 // ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
-class User extends DataClass implements Insertable<User> {
+class UserDatabase extends DataClass implements Insertable<UserDatabase> {
   final int id;
   final String name;
   final String genre;
   final int value;
-  User({@required this.id, this.name, this.genre, this.value});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  UserDatabase({@required this.id, this.name, this.genre, this.value});
+  factory UserDatabase.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return User(
+    return UserDatabase(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
       genre:
@@ -55,10 +55,10 @@ class User extends DataClass implements Insertable<User> {
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json,
+  factory UserDatabase.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return User(
+    return UserDatabase(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       genre: serializer.fromJson<String>(json['genre']),
@@ -76,7 +76,8 @@ class User extends DataClass implements Insertable<User> {
     };
   }
 
-  User copyWith({int id, String name, String genre, int value}) => User(
+  UserDatabase copyWith({int id, String name, String genre, int value}) =>
+      UserDatabase(
         id: id ?? this.id,
         name: name ?? this.name,
         genre: genre ?? this.genre,
@@ -84,7 +85,7 @@ class User extends DataClass implements Insertable<User> {
       );
   @override
   String toString() {
-    return (StringBuffer('User(')
+    return (StringBuffer('UserDatabase(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('genre: $genre, ')
@@ -99,14 +100,14 @@ class User extends DataClass implements Insertable<User> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is User &&
+      (other is UserDatabase &&
           other.id == this.id &&
           other.name == this.name &&
           other.genre == this.genre &&
           other.value == this.value);
 }
 
-class UserTableCompanion extends UpdateCompanion<User> {
+class UserTableCompanion extends UpdateCompanion<UserDatabase> {
   final Value<int> id;
   final Value<String> name;
   final Value<String> genre;
@@ -123,7 +124,7 @@ class UserTableCompanion extends UpdateCompanion<User> {
     this.genre = const Value.absent(),
     this.value = const Value.absent(),
   });
-  static Insertable<User> custom({
+  static Insertable<UserDatabase> custom({
     Expression<int> id,
     Expression<String> name,
     Expression<String> genre,
@@ -180,7 +181,8 @@ class UserTableCompanion extends UpdateCompanion<User> {
   }
 }
 
-class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
+class $UserTableTable extends UserTable
+    with TableInfo<$UserTableTable, UserDatabase> {
   final GeneratedDatabase _db;
   final String _alias;
   $UserTableTable(this._db, [this._alias]);
@@ -235,7 +237,7 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   final String actualTableName = 'user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<User> instance,
+  VerificationContext validateIntegrity(Insertable<UserDatabase> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -260,9 +262,9 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  User map(Map<String, dynamic> data, {String tablePrefix}) {
+  UserDatabase map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return User.fromData(data, _db, prefix: effectivePrefix);
+    return UserDatabase.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override
@@ -271,18 +273,21 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   }
 }
 
-class InfoUser extends DataClass implements Insertable<InfoUser> {
+class InfoUserDatabase extends DataClass
+    implements Insertable<InfoUserDatabase> {
   final int id;
   final String image;
   final String title;
   final String description;
-  InfoUser({@required this.id, this.image, this.title, this.description});
-  factory InfoUser.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  InfoUserDatabase(
+      {@required this.id, this.image, this.title, this.description});
+  factory InfoUserDatabase.fromData(
+      Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return InfoUser(
+    return InfoUserDatabase(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       image:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}image']),
@@ -323,10 +328,10 @@ class InfoUser extends DataClass implements Insertable<InfoUser> {
     );
   }
 
-  factory InfoUser.fromJson(Map<String, dynamic> json,
+  factory InfoUserDatabase.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return InfoUser(
+    return InfoUserDatabase(
       id: serializer.fromJson<int>(json['id']),
       image: serializer.fromJson<String>(json['image']),
       title: serializer.fromJson<String>(json['title']),
@@ -344,8 +349,9 @@ class InfoUser extends DataClass implements Insertable<InfoUser> {
     };
   }
 
-  InfoUser copyWith({int id, String image, String title, String description}) =>
-      InfoUser(
+  InfoUserDatabase copyWith(
+          {int id, String image, String title, String description}) =>
+      InfoUserDatabase(
         id: id ?? this.id,
         image: image ?? this.image,
         title: title ?? this.title,
@@ -353,7 +359,7 @@ class InfoUser extends DataClass implements Insertable<InfoUser> {
       );
   @override
   String toString() {
-    return (StringBuffer('InfoUser(')
+    return (StringBuffer('InfoUserDatabase(')
           ..write('id: $id, ')
           ..write('image: $image, ')
           ..write('title: $title, ')
@@ -368,14 +374,14 @@ class InfoUser extends DataClass implements Insertable<InfoUser> {
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is InfoUser &&
+      (other is InfoUserDatabase &&
           other.id == this.id &&
           other.image == this.image &&
           other.title == this.title &&
           other.description == this.description);
 }
 
-class InfoUserTableCompanion extends UpdateCompanion<InfoUser> {
+class InfoUserTableCompanion extends UpdateCompanion<InfoUserDatabase> {
   final Value<int> id;
   final Value<String> image;
   final Value<String> title;
@@ -392,7 +398,7 @@ class InfoUserTableCompanion extends UpdateCompanion<InfoUser> {
     this.title = const Value.absent(),
     this.description = const Value.absent(),
   });
-  static Insertable<InfoUser> custom({
+  static Insertable<InfoUserDatabase> custom({
     Expression<int> id,
     Expression<String> image,
     Expression<String> title,
@@ -450,7 +456,7 @@ class InfoUserTableCompanion extends UpdateCompanion<InfoUser> {
 }
 
 class $InfoUserTableTable extends InfoUserTable
-    with TableInfo<$InfoUserTableTable, InfoUser> {
+    with TableInfo<$InfoUserTableTable, InfoUserDatabase> {
   final GeneratedDatabase _db;
   final String _alias;
   $InfoUserTableTable(this._db, [this._alias]);
@@ -504,7 +510,7 @@ class $InfoUserTableTable extends InfoUserTable
   @override
   final String actualTableName = 'info_user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<InfoUser> instance,
+  VerificationContext validateIntegrity(Insertable<InfoUserDatabase> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -531,9 +537,9 @@ class $InfoUserTableTable extends InfoUserTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  InfoUser map(Map<String, dynamic> data, {String tablePrefix}) {
+  InfoUserDatabase map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return InfoUser.fromData(data, _db, prefix: effectivePrefix);
+    return InfoUserDatabase.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override

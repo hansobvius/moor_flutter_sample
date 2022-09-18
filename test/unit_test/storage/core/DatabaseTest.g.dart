@@ -278,19 +278,22 @@ class $UserInfoTableTable extends UserInfoTable
   }
 }
 
-class User extends DataClass implements Insertable<User> {
+class UserDatabase extends DataClass implements Insertable<UserDatabase> {
   final int id;
   final String name;
+  final String genre;
   final int value;
-  User({@required this.id, @required this.name, @required this.value});
-  factory User.fromData(Map<String, dynamic> data, GeneratedDatabase db,
+  UserDatabase({@required this.id, this.name, this.genre, this.value});
+  factory UserDatabase.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
     final intType = db.typeSystem.forDartType<int>();
     final stringType = db.typeSystem.forDartType<String>();
-    return User(
+    return UserDatabase(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
+      genre:
+          stringType.mapFromDatabaseResponse(data['${effectivePrefix}genre']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
     );
   }
@@ -303,6 +306,9 @@ class User extends DataClass implements Insertable<User> {
     if (!nullToAbsent || name != null) {
       map['name'] = Variable<String>(name);
     }
+    if (!nullToAbsent || genre != null) {
+      map['genre'] = Variable<String>(genre);
+    }
     if (!nullToAbsent || value != null) {
       map['value'] = Variable<int>(value);
     }
@@ -313,17 +319,20 @@ class User extends DataClass implements Insertable<User> {
     return UserTableCompanion(
       id: id == null && nullToAbsent ? const Value.absent() : Value(id),
       name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      genre:
+          genre == null && nullToAbsent ? const Value.absent() : Value(genre),
       value:
           value == null && nullToAbsent ? const Value.absent() : Value(value),
     );
   }
 
-  factory User.fromJson(Map<String, dynamic> json,
+  factory UserDatabase.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
-    return User(
+    return UserDatabase(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
+      genre: serializer.fromJson<String>(json['genre']),
       value: serializer.fromJson<int>(json['value']),
     );
   }
@@ -333,69 +342,82 @@ class User extends DataClass implements Insertable<User> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
+      'genre': serializer.toJson<String>(genre),
       'value': serializer.toJson<int>(value),
     };
   }
 
-  User copyWith({int id, String name, int value}) => User(
+  UserDatabase copyWith({int id, String name, String genre, int value}) =>
+      UserDatabase(
         id: id ?? this.id,
         name: name ?? this.name,
+        genre: genre ?? this.genre,
         value: value ?? this.value,
       );
   @override
   String toString() {
-    return (StringBuffer('User(')
+    return (StringBuffer('UserDatabase(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      $mrjf($mrjc(id.hashCode, $mrjc(name.hashCode, value.hashCode)));
+  int get hashCode => $mrjf($mrjc(id.hashCode,
+      $mrjc(name.hashCode, $mrjc(genre.hashCode, value.hashCode))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
-      (other is User &&
+      (other is UserDatabase &&
           other.id == this.id &&
           other.name == this.name &&
+          other.genre == this.genre &&
           other.value == this.value);
 }
 
-class UserTableCompanion extends UpdateCompanion<User> {
+class UserTableCompanion extends UpdateCompanion<UserDatabase> {
   final Value<int> id;
   final Value<String> name;
+  final Value<String> genre;
   final Value<int> value;
   const UserTableCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.genre = const Value.absent(),
     this.value = const Value.absent(),
   });
   UserTableCompanion.insert({
     this.id = const Value.absent(),
-    @required String name,
-    @required int value,
-  })  : name = Value(name),
-        value = Value(value);
-  static Insertable<User> custom({
+    this.name = const Value.absent(),
+    this.genre = const Value.absent(),
+    this.value = const Value.absent(),
+  });
+  static Insertable<UserDatabase> custom({
     Expression<int> id,
     Expression<String> name,
+    Expression<String> genre,
     Expression<int> value,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
+      if (genre != null) 'genre': genre,
       if (value != null) 'value': value,
     });
   }
 
   UserTableCompanion copyWith(
-      {Value<int> id, Value<String> name, Value<int> value}) {
+      {Value<int> id,
+      Value<String> name,
+      Value<String> genre,
+      Value<int> value}) {
     return UserTableCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
+      genre: genre ?? this.genre,
       value: value ?? this.value,
     );
   }
@@ -409,6 +431,9 @@ class UserTableCompanion extends UpdateCompanion<User> {
     if (name.present) {
       map['name'] = Variable<String>(name.value);
     }
+    if (genre.present) {
+      map['genre'] = Variable<String>(genre.value);
+    }
     if (value.present) {
       map['value'] = Variable<int>(value.value);
     }
@@ -420,13 +445,15 @@ class UserTableCompanion extends UpdateCompanion<User> {
     return (StringBuffer('UserTableCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
         .toString();
   }
 }
 
-class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
+class $UserTableTable extends UserTable
+    with TableInfo<$UserTableTable, UserDatabase> {
   final GeneratedDatabase _db;
   final String _alias;
   $UserTableTable(this._db, [this._alias]);
@@ -447,8 +474,17 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     return GeneratedTextColumn(
       'name',
       $tableName,
-      false,
+      true,
     );
+  }
+
+  final VerificationMeta _genreMeta = const VerificationMeta('genre');
+  GeneratedTextColumn _genre;
+  @override
+  GeneratedTextColumn get genre => _genre ??= _constructGenre();
+  GeneratedTextColumn _constructGenre() {
+    return GeneratedTextColumn('genre', $tableName, true,
+        defaultValue: const Constant(''));
   }
 
   final VerificationMeta _valueMeta = const VerificationMeta('value');
@@ -459,12 +495,12 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     return GeneratedIntColumn(
       'value',
       $tableName,
-      false,
+      true,
     );
   }
 
   @override
-  List<GeneratedColumn> get $columns => [id, name, value];
+  List<GeneratedColumn> get $columns => [id, name, genre, value];
   @override
   $UserTableTable get asDslTable => this;
   @override
@@ -472,7 +508,7 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   final String actualTableName = 'user_table';
   @override
-  VerificationContext validateIntegrity(Insertable<User> instance,
+  VerificationContext validateIntegrity(Insertable<UserDatabase> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -482,14 +518,14 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name'], _nameMeta));
-    } else if (isInserting) {
-      context.missing(_nameMeta);
+    }
+    if (data.containsKey('genre')) {
+      context.handle(
+          _genreMeta, genre.isAcceptableOrUnknown(data['genre'], _genreMeta));
     }
     if (data.containsKey('value')) {
       context.handle(
           _valueMeta, value.isAcceptableOrUnknown(data['value'], _valueMeta));
-    } else if (isInserting) {
-      context.missing(_valueMeta);
     }
     return context;
   }
@@ -497,9 +533,9 @@ class $UserTableTable extends UserTable with TableInfo<$UserTableTable, User> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  User map(Map<String, dynamic> data, {String tablePrefix}) {
+  UserDatabase map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return User.fromData(data, _db, prefix: effectivePrefix);
+    return UserDatabase.fromData(data, _db, prefix: effectivePrefix);
   }
 
   @override

@@ -10,19 +10,19 @@ part 'InfoUserDao.g.dart';
 class InfoUserDao
     extends DatabaseAccessor<AppDatabase>
     with _$InfoUserDaoMixin, BaseDatabase
-    implements BaseDao<InfoUser>{
+    implements BaseDao<InfoUserDatabase>{
 
   InfoUserDao(AppDatabase database) : super(database);
 
   @override
-  Future insert(Insertable<InfoUser> info) async => await into(infoUserTable).insert(info);
+  Future insert(Insertable<InfoUserDatabase> info) async => await into(infoUserTable).insert(info);
 
   @override
-  Future<List<InfoUser>> getAll() async => await select(infoUserTable).get();
+  Future<List<InfoUserDatabase>> getAll() async => await select(infoUserTable).get();
 
   @override
-  Future deleteAll(InfoUser info) async => await delete(infoUserTable).delete(info);
+  Future deleteAll(InfoUserDatabase info) async => await delete(infoUserTable).delete(info);
 
   @override
-  Stream<List<InfoUser>> watchAll() => select(infoUserTable).watch();
+  Stream<List<InfoUserDatabase>> watchAll() => select(infoUserTable).watch();
 }

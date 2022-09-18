@@ -13,12 +13,12 @@ part 'UserDao.g.dart';
 class UserDao
     extends DatabaseAccessor<AppDatabase>
     with _$UserDaoMixin, BaseDatabase
-    implements BaseDao<User> {
+    implements BaseDao<UserDatabase> {
 
   UserDao(AppDatabase database) : super(database);
 
   @override
-  Future insert(Insertable<User> user) async {
+  Future insert(Insertable<UserDatabase> user) async {
     try {
       await into(userTable).insert(user, mode: InsertMode.insertOrReplace);
     } on SqliteException catch (error) {
@@ -27,7 +27,7 @@ class UserDao
   }
 
   @override
-  Future<List<User>> getAll() async {
+  Future<List<UserDatabase>> getAll() async {
     try {
       return await select(userTable).get();
     } on SqliteException catch (error) {
@@ -37,7 +37,7 @@ class UserDao
   }
 
   @override
-  Future deleteAll(User user) async {
+  Future deleteAll(UserDatabase user) async {
     try {
       await delete(userTable).delete(user);
     } on SqliteException catch (error) {
@@ -46,7 +46,7 @@ class UserDao
   }
 
   @override
-  Stream<List<User>> watchAll() {
+  Stream<List<UserDatabase>> watchAll() {
     try {
       return select(userTable).watch();
     } on SqliteException catch (error) {

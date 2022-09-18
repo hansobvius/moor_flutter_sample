@@ -11,7 +11,7 @@ void main(){
 
   group('database test', (){
 
-    setUp(() {
+    setUp(() async {
       _db = DatabaseTest(VmDatabase.memory());
       _dao = UserDao(_db);
     });
@@ -21,21 +21,47 @@ void main(){
           name: Value("name"),
           value: Value(10)
       );
-      _dao.insert(user);
+      var injectResult = await _dao.insert(user);
+      expect(injectResult != null, true);
     });
 
     test('check data insertion', ()  async {
-      Future<List<User>>  result = _dao.getAll();
-      result.then((value) => {
-        expect(value[0].name, 'name'),
-        expect(value[0].value, 10)
+      await _dao.insert(
+          UserTableCompanion(
+            name: Value("name"),
+            genre: Value("male"),
+            value: Value(10)
+        ));
+      List<UserDatabase> result = await _dao.getAll();
+      expect(result[0].id, 1);
+      expect(result[0].name, 'name');
+      expect(result[0].genre, 'male');
+      expect(result[0].value, 10);
+    });
+
+    test('check data list insertion', ()  async {
+      List<int> idList = [1, 2, 3];
+      idList.forEach((element) async {
+        await _dao.insert(
+            UserTableCompanion(
+                name: Value("name"),
+                genre: Value("male"),
+                value: Value(10)
+            ));
+      });
+      List<UserDatabase> result = await _dao.getAll();
+      expect(result.length, 3, reason: "check result list result");
+      idList.forEach((id) {
+        expect(result[0].id, id, reason: "check id result");
+        expect(result[0].name, 'name', reason: "check name result");
+        expect(result[0].genre, 'male', reason: "check genre result");
+        expect(result[0].value, 10, reason: "check value result");
       });
     });
 
-    // FIXME - db are closing before unit test been completed
-    // tearDown((){
-    //   _db.close();
-    // });
+    tearDown((){
+      _db.close();
+    });
   });
 }
 

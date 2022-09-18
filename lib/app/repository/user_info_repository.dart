@@ -13,7 +13,7 @@ class InfoUserRepository{
         _dao = dao, 
         _service = service;
   
-  Future<List<InfoUser>> initInfoRepository() async {
+  Future<List<InfoUserDatabase>> initInfoRepository() async {
     await _service.getInfoService().then((value) => {
       value.forEach((element) {
         insert(element);

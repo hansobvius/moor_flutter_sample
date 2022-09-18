@@ -1,6 +1,6 @@
 import 'package:moor/moor.dart';
 
-@DataClassName('InfoUser')
+@DataClassName('InfoUserDatabase')
 class InfoUserTable extends Table{
 
   IntColumn get id => integer().autoIncrement()();
