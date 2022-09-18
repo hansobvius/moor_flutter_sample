@@ -51,11 +51,11 @@ void main(){
       });
       List<UserDatabase> result = await _dao.getAll();
       expect(result.length, 3, reason: "check result list result");
-      idList.forEach((id) {
-        expect(result[0].id, id, reason: "check id result");
-        expect(result[0].name, 'name', reason: "check name result");
-        expect(result[0].genre, 'male', reason: "check genre result");
-        expect(result[0].value, 10, reason: "check value result");
+      idList.asMap().forEach((key, value) {
+        expect(result[key].id, value, reason: "check id result");
+        expect(result[key].name, 'name', reason: "check name result");
+        expect(result[key].genre, 'male', reason: "check genre result");
+        expect(result[key].value, 10, reason: "check value result");
       });
     });
 
