@@ -18,7 +18,7 @@ class App extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: InfoView(serviceLocator: serviceLocator,),
+      home: HomeView(serviceLocator: serviceLocator,),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/storage/core/migration/DatabaseMigration.dart';
@@ -12,12 +13,23 @@ import 'package:path/path.dart' as p;
 part 'AppDatabase.g.dart';
 
 LazyDatabase _openConnection() {
-  final storage = 'db.moorsample';
-  return LazyDatabase(() async {
-    final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, storage));
-    return VmDatabase(file);
-  });
+  try{
+    final storage = 'db.moorsample';
+    return LazyDatabase(() async {
+      final dbFolder = await getApplicationDocumentsDirectory();
+      final file = File(p.join(dbFolder.path, storage));
+      final dir = Directory(file.path);
+      var fileExists = await dir.exists();
+      if(!fileExists) {
+        print('APP_DATABASE file create ${dir.path}');
+        dir.create(recursive: true);
+      }
+      return VmDatabase(file, logStatements: true);
+    });
+  } on FileSystemException catch(error) {
+    debugPrint('FILE CANNOT CREATE $error');
+  }
+  return null;
 }
 
 @UseMoor(tables: [UserTable, InfoUserTable], daos: [UserDao, InfoUserDao])

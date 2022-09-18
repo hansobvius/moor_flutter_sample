@@ -14,19 +14,17 @@ dependency_overrides:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.0
   mobx: ^1.2.1+4
   flutter_mobx: ^1.1.0+2
-  moor: ^3.4.0
-  sqlite3_flutter_libs: 0.3.0
-  path_provider: ^1.6.24
+  moor: 3.4.0
+  sqlite3_flutter_libs: ^0.4.0+1
+  path_provider: 1.6.24
   path: 1.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   test: ^1.9.0
   moor_generator: 3.4.0
   build_runner: 1.10.11
@@ -34,7 +32,6 @@ dev_dependencies:
   network_image_mock: ^1.1.0
 
 flutter:
-
   uses-material-design: true
 
 

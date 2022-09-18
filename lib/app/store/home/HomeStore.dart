@@ -20,9 +20,11 @@ abstract class _HomeStore with Store{
   @action
   Future getAll() async {
     var list = await _domain.getAll();
-    list.forEach((element) {
-      userList.add(UserModel(name: element.name, value: element.value));
-    });
+    if(list != null) {
+      list.forEach((element) {
+        userList.add(UserModel(name: element.name, value: element.value));
+      });
+    }
   }
 
   @action

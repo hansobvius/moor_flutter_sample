@@ -6,7 +6,7 @@ class InfoDomain{
 
   InfoUserRepository _repository;
 
-  InfoDomain(InfoUserRepository repsository) : _repository = repsository;
+  InfoDomain(InfoUserRepository repository) : _repository = repository;
 
   Future<List<InfoUser>> getInfo() async {
     return await _repository.initInfoRepository();
