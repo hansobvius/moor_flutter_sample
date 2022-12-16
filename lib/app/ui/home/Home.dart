@@ -57,7 +57,9 @@ class _HomeViewState extends State<HomeView>{
                       itemBuilder: (BuildContext context, int index){
                         return Container(
                           child: Text(
-                            "NAME: ${_store.userList[index].name} VALUE: ${_store.userList[index].value}"
+                                "NAME: ${_store.userList[index].name} "
+                                "LAST_NAME  ${_store.userList[index].lastName} "
+                                "VALUE: ${_store.userList[index].value}"
                           )
                         );
                       }
@@ -70,10 +72,14 @@ class _HomeViewState extends State<HomeView>{
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          child: Text('insert', style: TextStyle(fontSize: 14),),
+                        child: TextButton(
+                          child: Text('insert', style: TextStyle(fontSize: 14)),
                           onPressed: (){
-                            this.insert(UserModel(name: "Thiago", genre: 'genre', value: Random().nextInt(10)));
+                            this.insert(UserModel(
+                                name: "Thiago",
+                                lastName: 'Caiado',
+                                genre: 'genre',
+                                value: Random().nextInt(10)));
                           },
                         ),
                       ),
@@ -81,8 +87,8 @@ class _HomeViewState extends State<HomeView>{
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          child: Text('delete', style: TextStyle(fontSize: 14),),
+                        child: TextButton(
+                          child: Text('delete', style: TextStyle(fontSize: 14)),
                           onPressed: (){
                             this.delete();
                           },

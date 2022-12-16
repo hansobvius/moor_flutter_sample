@@ -22,7 +22,7 @@ abstract class _HomeStore with Store{
     var list = await _domain.getAll();
     if(list != null) {
       list.forEach((element) {
-        userList.add(UserModel(name: element.name, value: element.value));
+        userList.add(UserModel(name: element.name, lastName: element.lastName, value: element.value));
       });
     }
   }

@@ -29,7 +29,8 @@ class UserDao
   @override
   Future<List<UserDatabase>> getAll() async {
     try {
-      return await select(userTable).get();
+      var getAllUserStorage = await select(userTable).get();
+      return getAllUserStorage;
     } on SqliteException catch (error) {
       debugPrint('DATABASE ERROR get all user $error');
     }

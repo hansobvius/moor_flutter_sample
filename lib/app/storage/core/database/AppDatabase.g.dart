@@ -10,9 +10,11 @@ part of 'AppDatabase.dart';
 class UserDatabase extends DataClass implements Insertable<UserDatabase> {
   final int id;
   final String name;
+  final String lastName;
   final String genre;
   final int value;
-  UserDatabase({@required this.id, this.name, this.genre, this.value});
+  UserDatabase(
+      {@required this.id, this.name, this.lastName, this.genre, this.value});
   factory UserDatabase.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -21,6 +23,8 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     return UserDatabase(
       id: intType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
       name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
+      lastName: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}last_name']),
       genre:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}genre']),
       value: intType.mapFromDatabaseResponse(data['${effectivePrefix}value']),
@@ -35,6 +39,9 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     if (!nullToAbsent || name != null) {
       map['name'] = Variable<String>(name);
     }
+    if (!nullToAbsent || lastName != null) {
+      map['last_name'] = Variable<String>(lastName);
+    }
     if (!nullToAbsent || genre != null) {
       map['genre'] = Variable<String>(genre);
     }
@@ -48,6 +55,9 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     return UserTableCompanion(
       id: id == null && nullToAbsent ? const Value.absent() : Value(id),
       name: name == null && nullToAbsent ? const Value.absent() : Value(name),
+      lastName: lastName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastName),
       genre:
           genre == null && nullToAbsent ? const Value.absent() : Value(genre),
       value:
@@ -61,6 +71,7 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     return UserDatabase(
       id: serializer.fromJson<int>(json['id']),
       name: serializer.fromJson<String>(json['name']),
+      lastName: serializer.fromJson<String>(json['lastName']),
       genre: serializer.fromJson<String>(json['genre']),
       value: serializer.fromJson<int>(json['value']),
     );
@@ -71,15 +82,18 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'name': serializer.toJson<String>(name),
+      'lastName': serializer.toJson<String>(lastName),
       'genre': serializer.toJson<String>(genre),
       'value': serializer.toJson<int>(value),
     };
   }
 
-  UserDatabase copyWith({int id, String name, String genre, int value}) =>
+  UserDatabase copyWith(
+          {int id, String name, String lastName, String genre, int value}) =>
       UserDatabase(
         id: id ?? this.id,
         name: name ?? this.name,
+        lastName: lastName ?? this.lastName,
         genre: genre ?? this.genre,
         value: value ?? this.value,
       );
@@ -88,6 +102,7 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
     return (StringBuffer('UserDatabase(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('lastName: $lastName, ')
           ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
@@ -95,14 +110,17 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
   }
 
   @override
-  int get hashCode => $mrjf($mrjc(id.hashCode,
-      $mrjc(name.hashCode, $mrjc(genre.hashCode, value.hashCode))));
+  int get hashCode => $mrjf($mrjc(
+      id.hashCode,
+      $mrjc(name.hashCode,
+          $mrjc(lastName.hashCode, $mrjc(genre.hashCode, value.hashCode)))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
       (other is UserDatabase &&
           other.id == this.id &&
           other.name == this.name &&
+          other.lastName == this.lastName &&
           other.genre == this.genre &&
           other.value == this.value);
 }
@@ -110,29 +128,34 @@ class UserDatabase extends DataClass implements Insertable<UserDatabase> {
 class UserTableCompanion extends UpdateCompanion<UserDatabase> {
   final Value<int> id;
   final Value<String> name;
+  final Value<String> lastName;
   final Value<String> genre;
   final Value<int> value;
   const UserTableCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.lastName = const Value.absent(),
     this.genre = const Value.absent(),
     this.value = const Value.absent(),
   });
   UserTableCompanion.insert({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
+    this.lastName = const Value.absent(),
     this.genre = const Value.absent(),
     this.value = const Value.absent(),
   });
   static Insertable<UserDatabase> custom({
     Expression<int> id,
     Expression<String> name,
+    Expression<String> lastName,
     Expression<String> genre,
     Expression<int> value,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (name != null) 'name': name,
+      if (lastName != null) 'last_name': lastName,
       if (genre != null) 'genre': genre,
       if (value != null) 'value': value,
     });
@@ -141,11 +164,13 @@ class UserTableCompanion extends UpdateCompanion<UserDatabase> {
   UserTableCompanion copyWith(
       {Value<int> id,
       Value<String> name,
+      Value<String> lastName,
       Value<String> genre,
       Value<int> value}) {
     return UserTableCompanion(
       id: id ?? this.id,
       name: name ?? this.name,
+      lastName: lastName ?? this.lastName,
       genre: genre ?? this.genre,
       value: value ?? this.value,
     );
@@ -159,6 +184,9 @@ class UserTableCompanion extends UpdateCompanion<UserDatabase> {
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
+    }
+    if (lastName.present) {
+      map['last_name'] = Variable<String>(lastName.value);
     }
     if (genre.present) {
       map['genre'] = Variable<String>(genre.value);
@@ -174,6 +202,7 @@ class UserTableCompanion extends UpdateCompanion<UserDatabase> {
     return (StringBuffer('UserTableCompanion(')
           ..write('id: $id, ')
           ..write('name: $name, ')
+          ..write('lastName: $lastName, ')
           ..write('genre: $genre, ')
           ..write('value: $value')
           ..write(')'))
@@ -207,6 +236,18 @@ class $UserTableTable extends UserTable
     );
   }
 
+  final VerificationMeta _lastNameMeta = const VerificationMeta('lastName');
+  GeneratedTextColumn _lastName;
+  @override
+  GeneratedTextColumn get lastName => _lastName ??= _constructLastName();
+  GeneratedTextColumn _constructLastName() {
+    return GeneratedTextColumn(
+      'last_name',
+      $tableName,
+      true,
+    );
+  }
+
   final VerificationMeta _genreMeta = const VerificationMeta('genre');
   GeneratedTextColumn _genre;
   @override
@@ -229,7 +270,7 @@ class $UserTableTable extends UserTable
   }
 
   @override
-  List<GeneratedColumn> get $columns => [id, name, genre, value];
+  List<GeneratedColumn> get $columns => [id, name, lastName, genre, value];
   @override
   $UserTableTable get asDslTable => this;
   @override
@@ -247,6 +288,10 @@ class $UserTableTable extends UserTable
     if (data.containsKey('name')) {
       context.handle(
           _nameMeta, name.isAcceptableOrUnknown(data['name'], _nameMeta));
+    }
+    if (data.containsKey('last_name')) {
+      context.handle(_lastNameMeta,
+          lastName.isAcceptableOrUnknown(data['last_name'], _lastNameMeta));
     }
     if (data.containsKey('genre')) {
       context.handle(

@@ -39,7 +39,7 @@ class AppDatabase extends _$AppDatabase{
   static final AppDatabase instance = AppDatabase();
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => DatabaseMigration(this).migrationOp(schemaVersion);

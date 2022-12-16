@@ -14,6 +14,7 @@ class HomeDomain{
   Future insert(UserModel userEntity) async {
     var user = UserTableCompanion(
         name: Value("${userEntity.name}"),
+        lastName: Value("${userEntity.lastName}"),
         genre: Value("${userEntity.genre}"),
         value: Value(userEntity.value)
     );
