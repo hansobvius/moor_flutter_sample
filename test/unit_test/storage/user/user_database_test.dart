@@ -1,34 +1,25 @@
-import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
+import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 import 'package:test/test.dart';
-import '../core/DatabaseTest.dart';
-import 'dao/UserDao.dart';
+import '../../../../lib/app/storage/user_storage/user_dao/UserDao.dart';
 
 void main(){
 
-  DatabaseTest _db;
+  AppDatabase _db;
   UserDao _dao;
 
   group('database test', (){
 
     setUp(() async {
-      _db = DatabaseTest(VmDatabase.memory());
+      _db = AppDatabase(production: false);
       _dao = UserDao(_db);
-    });
-
-    test('users can be created', () async {
-      var user = UserTableCompanion(
-          name: Value("name"),
-          value: Value(10)
-      );
-      var injectResult = await _dao.insert(user);
-      expect(injectResult != null, true);
     });
 
     test('check data insertion', ()  async {
       await _dao.insert(
           UserTableCompanion(
             name: Value("name"),
+            lastName: Value("lastName"),
             genre: Value("male"),
             value: Value(10)
         ));
@@ -61,6 +52,7 @@ void main(){
 
     tearDown((){
       _db.close();
+      _dao = null;
     });
   });
 }

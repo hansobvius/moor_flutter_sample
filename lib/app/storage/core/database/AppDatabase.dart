@@ -14,13 +14,13 @@ part 'AppDatabase.g.dart';
 
 LazyDatabase _openConnection() {
   try{
-    final storage = 'db.moorsample';
+    final storageName = 'db.moorsample';
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
-      final file = File(p.join(dbFolder.path, storage));
+      final file = File(p.join(dbFolder.path, storageName));
       final dir = Directory(file.path);
       var fileExists = await dir.exists();
-      if(!fileExists) {
+      if (!fileExists) {
         print('APP_DATABASE file create ${dir.path}');
         dir.create(recursive: true);
       }
@@ -34,7 +34,9 @@ LazyDatabase _openConnection() {
 
 @UseMoor(tables: [UserTable, InfoUserTable], daos: [UserDao, InfoUserDao])
 class AppDatabase extends _$AppDatabase{
-  AppDatabase() : super(_openConnection());
+
+  AppDatabase({bool production = true})
+      : super(production ? _openConnection() : VmDatabase.memory());
 
   static final AppDatabase instance = AppDatabase();
 
