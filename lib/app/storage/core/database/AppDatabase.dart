@@ -12,18 +12,12 @@ import 'package:path/path.dart' as p;
 
 part 'AppDatabase.g.dart';
 
-LazyDatabase _openConnection() {
+LazyDatabase get _openConnection {
   try{
     final storageName = 'db.moorsample';
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
       final file = File(p.join(dbFolder.path, storageName));
-      final dir = Directory(file.path);
-      var fileExists = await dir.exists();
-      if (!fileExists) {
-        print('APP_DATABASE file create ${dir.path}');
-        dir.create(recursive: true);
-      }
       return VmDatabase(file, logStatements: true);
     });
   } on FileSystemException catch(error) {
@@ -32,11 +26,15 @@ LazyDatabase _openConnection() {
   return null;
 }
 
+VmDatabase get vmDatabase {
+  return VmDatabase.memory(logStatements: true);
+}
+
 @UseMoor(tables: [UserTable, InfoUserTable], daos: [UserDao, InfoUserDao])
 class AppDatabase extends _$AppDatabase{
 
   AppDatabase({bool production = true})
-      : super(production ? _openConnection() : VmDatabase.memory());
+      : super(production ? _openConnection : vmDatabase);
 
   static final AppDatabase instance = AppDatabase();
 
