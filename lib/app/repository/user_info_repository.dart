@@ -1,7 +1,7 @@
-import 'package:moor_flutter/app/entity/InfoModel.dart';
+import 'package:moor_flutter/app/entity/info_model.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/InfoUserDao.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
+import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/info_user_dao.dart';
 
 class InfoUserRepository{
   

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'InfoStore.dart';
+part of 'info_store.dart';
 
 // **************************************************************************
 // StoreGenerator

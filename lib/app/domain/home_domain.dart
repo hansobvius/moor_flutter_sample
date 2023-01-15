@@ -1,6 +1,6 @@
-import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-import 'package:moor_flutter/app/storage/user_storage/user_dao/UserDao.dart';
+import 'package:moor_flutter/app/entity/user_model.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
+import 'package:moor_flutter/app/storage/user_storage/user_dao/user_dao.dart';
 
 class HomeDomain{
 

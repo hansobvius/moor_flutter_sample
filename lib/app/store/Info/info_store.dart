@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
-import 'package:moor_flutter/app/domain/InfoDomain.dart';
-import 'package:moor_flutter/app/entity/InfoModel.dart';
+import 'package:moor_flutter/app/domain/info_domain.dart';
+import 'package:moor_flutter/app/entity/info_model.dart';
 
-part 'InfoStore.g.dart';
+part 'info_store.g.dart';
 
 class InfoStore extends _InfoStore with _$InfoStore{
   InfoStore(InfoDomain infoDomain) : super(infoDomain);

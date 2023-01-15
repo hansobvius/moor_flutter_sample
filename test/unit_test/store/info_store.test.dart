@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:moor_flutter/app/di/ServiceLocator.dart';
-import 'package:moor_flutter/app/store/Info/InfoStore.dart';
+import 'package:moor_flutter/app/di/service_locator.dart';
+import 'package:moor_flutter/app/store/Info/info_store.dart';
 
 void main(){
 

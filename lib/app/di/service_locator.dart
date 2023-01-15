@@ -1,12 +1,12 @@
-import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/domain/InfoDomain.dart';
+import 'package:moor_flutter/app/domain/home_domain.dart';
+import 'package:moor_flutter/app/domain/info_domain.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import 'package:moor_flutter/app/repository/user_info_repository.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/InfoUserDao.dart';
-import 'package:moor_flutter/app/storage/user_storage/user_dao/UserDao.dart';
-import 'package:moor_flutter/app/store/Info/InfoStore.dart';
-import 'package:moor_flutter/app/store/home/HomeStore.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
+import 'package:moor_flutter/app/storage/info_user_storage/info_user_dao/info_user_dao.dart';
+import 'package:moor_flutter/app/storage/user_storage/user_dao/user_dao.dart';
+import 'package:moor_flutter/app/store/Info/info_store.dart';
+import 'package:moor_flutter/app/store/home/home_store.dart';
 
 class ServiceLocator{
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:moor_flutter/app/di/ServiceLocator.dart';
-import 'package:moor_flutter/app/store/Info/InfoStore.dart';
+import 'package:moor_flutter/app/di/service_locator.dart';
+import 'package:moor_flutter/app/store/Info/info_store.dart';
 
 class InfoView extends StatefulWidget{
 

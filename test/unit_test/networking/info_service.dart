@@ -1,4 +1,4 @@
-import 'package:moor_flutter/app/entity/InfoModel.dart';
+import 'package:moor_flutter/app/entity/info_model.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 
 abstract class IBaseService<T, M>{

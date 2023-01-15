@@ -1,5 +1,5 @@
-import 'package:moor_flutter/app/entity/InfoModel.dart';
-import '../BaseService.dart';
+import 'package:moor_flutter/app/entity/info_model.dart';
+import '../base_service.dart';
 
 class InfoUserService extends BaseService<InfoModel>{
 

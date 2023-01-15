@@ -1,6 +1,6 @@
-import 'package:moor_flutter/app/entity/InfoModel.dart';
+import 'package:moor_flutter/app/entity/info_model.dart';
 import 'package:moor_flutter/app/repository/user_info_repository.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
 
 class InfoDomain{
 

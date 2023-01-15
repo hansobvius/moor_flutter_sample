@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-import 'IMigration.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
+import 'migration_interface.dart';
 
 /// Class that provides migration operations
 class DatabaseMigration<T extends DataClass> implements IMigration{

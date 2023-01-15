@@ -1,10 +1,10 @@
 import 'package:drift/drift.dart';
-import 'package:moor_flutter/app/storage/core/BaseDao.dart';
-import 'package:moor_flutter/app/storage/core/BaseDatabase.dart';
-import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-import 'package:moor_flutter/app/storage/info_user_storage/info_user_table/InfoUserTable.dart';
+import 'package:moor_flutter/app/storage/core/base_dao.dart';
+import 'package:moor_flutter/app/storage/core/base_database.dart';
+import 'package:moor_flutter/app/storage/core/database/app_database.dart';
+import 'package:moor_flutter/app/storage/info_user_storage/info_user_table/info_user_table.dart';
 
-part 'InfoUserDao.g.dart';
+part 'info_user_dao.g.dart';
 
 @DriftAccessor(tables: [InfoUserTable])
 class InfoUserDao

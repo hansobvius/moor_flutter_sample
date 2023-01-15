@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
-import 'package:moor_flutter/app/domain/HomeDomain.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
+import 'package:moor_flutter/app/domain/home_domain.dart';
+import 'package:moor_flutter/app/entity/user_model.dart';
 
-part 'HomeStore.g.dart';
+part 'home_store.g.dart';
 
 class HomeStore extends _HomeStore with _$HomeStore{
   HomeStore(HomeDomain domain) : super(domain);

@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:moor_flutter/app/di/ServiceLocator.dart';
-import 'package:moor_flutter/app/entity/UserModel.dart';
-import 'package:moor_flutter/app/store/home/HomeStore.dart';
+import 'package:moor_flutter/app/di/service_locator.dart';
+import 'package:moor_flutter/app/entity/user_model.dart';
+import 'package:moor_flutter/app/store/home/home_store.dart';
 
 class HomeView extends StatefulWidget{
 
