@@ -38,7 +38,7 @@ abstract class _HomeStore with Store{
   void deleteAll(){
     userList.clear();
     _domain.getAll().then((value) => {
-      value.forEach((element) {
+      value!.forEach((element) {
         _domain.delete(element);
       })
     });

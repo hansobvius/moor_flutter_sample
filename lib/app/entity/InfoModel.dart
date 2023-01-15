@@ -1,9 +1,9 @@
 
 class InfoModel{
 
-  String image;
-  String title;
-  String description;
+  String? image;
+  String? title;
+  String? description;
 
   InfoModel({this.image, this.title, this.description});
 

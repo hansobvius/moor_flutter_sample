@@ -1,6 +1,5 @@
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
-
 import 'IMigration.dart';
 
 /// Class that provides migration operations

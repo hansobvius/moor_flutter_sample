@@ -8,7 +8,7 @@ class App extends StatelessWidget{
 
   final ServiceLocator serviceLocator;
 
-  App({this.serviceLocator});
+  App({required this.serviceLocator});
 
   @override
   Widget build(BuildContext context) {

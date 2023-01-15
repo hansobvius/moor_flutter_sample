@@ -1,4 +1,3 @@
-import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/entity/InfoModel.dart';
 import 'package:moor_flutter/app/networking/service/info_user_service.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
@@ -24,11 +23,11 @@ class InfoUserRepository{
 
   Future insert(InfoModel infoEntity) async {
     try{
-      await _dao.insert(InfoUserTableCompanion(
-          image: Value("${infoEntity.image}"),
-          title: Value("${infoEntity.title}"),
-          description: Value("${infoEntity.description}")
-      ));
+      // await _dao.insert(InfoUserTableCompanion(
+      //     image: Value("${infoEntity.image}"),
+      //     title: Value("${infoEntity.title}"),
+      //     description: Value("${infoEntity.description}")
+      // ));
     }catch(e){
       print(e.toString());
     }

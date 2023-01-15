@@ -2,10 +2,7 @@
 
 part of 'InfoUserDao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$InfoUserDaoMixin on DatabaseAccessor<AppDatabase> {
   $InfoUserTableTable get infoUserTable => attachedDatabase.infoUserTable;
 }

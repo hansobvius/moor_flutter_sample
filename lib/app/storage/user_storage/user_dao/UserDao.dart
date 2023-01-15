@@ -1,15 +1,14 @@
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
-import 'package:moor/ffi.dart';
-import 'package:moor/moor.dart';
 import 'package:moor_flutter/app/storage/core/BaseDao.dart';
 import 'package:moor_flutter/app/storage/core/BaseDatabase.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
 import 'package:moor_flutter/app/storage/user_storage/user_table/UserTable.dart';
 
-
 part 'UserDao.g.dart';
 
-@UseDao(tables: [UserTable])
+@DriftAccessor(tables: [UserTable])
 class UserDao
     extends DatabaseAccessor<AppDatabase>
     with _$UserDaoMixin, BaseDatabase
@@ -27,7 +26,7 @@ class UserDao
   }
 
   @override
-  Future<List<UserDatabase>> getAll() async {
+  Future<List<UserDatabase>?> getAll() async {
     try {
       var getAllUserStorage = await select(userTable).get();
       return getAllUserStorage;
@@ -47,7 +46,7 @@ class UserDao
   }
 
   @override
-  Stream<List<UserDatabase>> watchAll() {
+  Stream<List<UserDatabase>>? watchAll() {
     try {
       return select(userTable).watch();
     } on SqliteException catch (error) {

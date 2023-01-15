@@ -8,7 +8,7 @@ class InfoView extends StatefulWidget{
   final ServiceLocator serviceLocator;
 
 
-  InfoView({this.serviceLocator});
+  InfoView({required this.serviceLocator});
 
   @override
   _InfoView createState() => _InfoView();
@@ -16,7 +16,7 @@ class InfoView extends StatefulWidget{
 
 class _InfoView extends State<InfoView>{
 
-  InfoStore _store;
+  late InfoStore _store;
 
   @override
   void initState(){
@@ -37,7 +37,7 @@ class _InfoView extends State<InfoView>{
                     itemCount: _store.infoModel.length ?? 0,
                     itemBuilder: (BuildContext context, int index){
                       return Center(
-                        child: Text(_store.infoModel[index].title),
+                        child: Text(_store.infoModel[index].title!),
                       );
                     }
                   ),

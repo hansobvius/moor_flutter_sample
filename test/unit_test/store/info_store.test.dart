@@ -1,11 +1,11 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:moor_flutter/app/di/ServiceLocator.dart';
 import 'package:moor_flutter/app/store/Info/InfoStore.dart';
-import 'package:test/test.dart';
 
 void main(){
 
   ServiceLocator _serviceLocator;
-  InfoStore _infoStore;
+  InfoStore? _infoStore;
 
   group('INFO STORE TEST', (){
 
@@ -19,7 +19,7 @@ void main(){
     });
 
     test('TEST STORE', () async {
-      _infoStore.getInfoModelList().then((value) => {
+      _infoStore!.getInfoModelList().then((value) => {
         expect(value != null, true)
       });
     });

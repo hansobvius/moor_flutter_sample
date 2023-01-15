@@ -9,7 +9,7 @@ class HomeView extends StatefulWidget{
 
   final ServiceLocator serviceLocator;
 
-  HomeView({this.serviceLocator});
+  HomeView({required this.serviceLocator});
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -17,7 +17,7 @@ class HomeView extends StatefulWidget{
 
 class _HomeViewState extends State<HomeView>{
 
-  HomeStore _store;
+  late HomeStore _store;
 
   @override
   void initState(){

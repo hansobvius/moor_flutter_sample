@@ -1,4 +1,4 @@
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 import 'package:moor_flutter/app/storage/core/BaseDao.dart';
 import 'package:moor_flutter/app/storage/core/BaseDatabase.dart';
 import 'package:moor_flutter/app/storage/core/database/AppDatabase.dart';
@@ -6,7 +6,7 @@ import 'package:moor_flutter/app/storage/info_user_storage/info_user_table/InfoU
 
 part 'InfoUserDao.g.dart';
 
-@UseDao(tables: [InfoUserTable])
+@DriftAccessor(tables: [InfoUserTable])
 class InfoUserDao
     extends DatabaseAccessor<AppDatabase>
     with _$InfoUserDaoMixin, BaseDatabase

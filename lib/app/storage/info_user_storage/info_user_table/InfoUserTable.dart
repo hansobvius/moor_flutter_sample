@@ -1,7 +1,7 @@
-import 'package:moor/moor.dart';
+import 'package:drift/drift.dart';
 
 @DataClassName('InfoUserDatabase')
-class InfoUserTable extends Table{
+class InfoUserTable extends Table {
 
   IntColumn get id => integer().autoIncrement()();
   TextColumn get image => text().nullable()();

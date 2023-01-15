@@ -1,9 +1,9 @@
 class UserModel{
 
-  String name;
-  String genre;
-  String lastName;
-  int value;
+  String? name;
+  String? genre;
+  String? lastName;
+  int? value;
 
   UserModel({this.name, this.lastName, this.genre, this.value});
 

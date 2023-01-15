@@ -10,14 +10,14 @@ import 'package:moor_flutter/app/store/home/HomeStore.dart';
 
 class ServiceLocator{
 
-  HomeStore homeStore;
-  HomeDomain homeDomain;
-  InfoDomain infoDomain;
-  UserDao userDao;
-  InfoUserDao infoDao;
-  InfoUserRepository infoUserRepository;
-  InfoUserService infoUserService;
-  InfoStore infoStore;
+  late HomeStore homeStore;
+  late HomeDomain homeDomain;
+  late InfoDomain infoDomain;
+  late UserDao userDao;
+  late InfoUserDao infoDao;
+  late InfoUserRepository infoUserRepository;
+  late InfoUserService infoUserService;
+  late InfoStore infoStore;
 
   static final ServiceLocator instance = ServiceLocator();
 
